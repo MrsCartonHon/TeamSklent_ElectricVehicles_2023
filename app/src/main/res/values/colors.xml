@@ -7,7 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
     <color name="JDGreen">#367C2B</color>
+    <color name="JDGreen2">#3B8927</color>
+    <color name="JDGreen3">#479829</color>
     <color name="JDYellow">#FFDE00</color>
     <color name="JDBlack">#27251F</color>
 </resources>

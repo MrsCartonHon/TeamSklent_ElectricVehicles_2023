@@ -4,16 +4,15 @@
         android:id="@+id/location"
         android:enabled="true"
         android:icon="@drawable/compass"
-        android:title="location"/>
+        android:title="@string/location"/>
     <item
         android:id="@+id/log"
         android:enabled="true"
         android:icon="@drawable/cellphone_marker"
-        android:title="Logbook"/>
+        android:title="@string/logbook"/>
     <item
         android:id="@+id/mow_button"
         android:enabled="true"
         android:icon="@drawable/golf_cart"
-        android:title="Start"/>
-
+        android:title="@string/start"/>
 </menu>
