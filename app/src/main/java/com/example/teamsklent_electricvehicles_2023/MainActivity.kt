@@ -50,6 +50,7 @@ class MainActivity : ComponentActivity() {
                         )
                         InputBox(label = "Enter Your Name")
                         InputBox(label = "Enter Your Password")
+                        InputBox(label = "Confirm Password")
                         CreateAccount()
                     }
                 }
