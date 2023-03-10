@@ -81,7 +81,9 @@ fun NavigationHost(navController: NavHostController) {
 
 @Composable
 fun BottomNavigationBar(navController: NavHostController) {
-    NavigationBar {
+    NavigationBar (
+        containerColor = JDGreen1
+    ){
         val backStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = backStackEntry?.destination?.route
         NavBarItems.BarItems.forEach { navItem ->
@@ -101,12 +103,16 @@ fun BottomNavigationBar(navController: NavHostController) {
                 icon = {
                     Icon(
                         imageVector = navItem.image,
-                        contentDescription = navItem.title
+                        contentDescription = navItem.title,
+                        tint = JDYellow
                     )
                 },
+
                 label = {
                     Text(text = navItem.title)
                 },
+                alwaysShowLabel = false,
+
             )
         }
     }

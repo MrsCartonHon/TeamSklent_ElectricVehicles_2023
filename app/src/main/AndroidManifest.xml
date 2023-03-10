@@ -13,7 +13,8 @@
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:exported="true"
-            tools:ignore="WrongManifestParent">
+            tools:ignore="WrongManifestParent"
+            >
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
