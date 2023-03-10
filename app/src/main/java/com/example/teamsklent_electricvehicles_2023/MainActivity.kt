@@ -30,13 +30,7 @@ class MainActivity() : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             TeamSklent_ElectricVehicles_2023Theme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = JDYellow
-                ) {
-                    MainScreen()
-                }
+                MainScreen()
             }
         }
     }
