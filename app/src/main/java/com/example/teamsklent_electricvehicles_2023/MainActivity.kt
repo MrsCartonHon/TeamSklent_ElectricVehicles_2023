@@ -5,16 +5,14 @@ package com.example.teamsklent_electricvehicles_2023
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.*
 import androidx.compose.material3.*
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
@@ -52,7 +50,7 @@ fun MainScreen() {
     val navController = rememberNavController()
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
+        //topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
         content = { NavigationHost(navController = navController) },
         bottomBar = { BottomNavigationBar(navController = navController) }
     )
