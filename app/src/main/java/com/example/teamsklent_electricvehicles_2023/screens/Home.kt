@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.*
@@ -15,8 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.teamsklent_electricvehicles_2023.ui.theme.JDGreen1
-import com.example.teamsklent_electricvehicles_2023.ui.theme.JDYellow
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
@@ -29,17 +26,14 @@ fun Home() {
             imageVector = Icons.Filled.Home,
             contentDescription = "Home",
             tint = Color.Blue,
-            modifier = Modifier
-                .size(150.dp)
+            modifier = Modifier.size(150.dp)
                 .align(Alignment.Center)
         )
     }
-    FloatingActionButton(
-        onClick = { /*TODO*/ },
-        containerColor = JDGreen1,
-        contentColor = JDYellow,
-        content = {
-            Icon(imageVector = Icons.Filled.Add, contentDescription = "drive", tint = JDYellow)
-        }
-    )
+    Column {
+        //List user's tractors here\
+
+
+    }
+
 }
