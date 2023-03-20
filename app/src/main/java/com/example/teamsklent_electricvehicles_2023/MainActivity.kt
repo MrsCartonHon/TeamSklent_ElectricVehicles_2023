@@ -70,7 +70,9 @@ fun NavigationHost(navController: NavHostController) {
         composable(NavRoutes.Account.route) {
             Account()
         }
-
+        /**
+         * *
+         */
         composable(NavRoutes.Logs.route) {
             Logs()
         }

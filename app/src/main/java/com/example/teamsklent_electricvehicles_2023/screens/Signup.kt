@@ -1,7 +1,5 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-<<<<<<< HEAD
-=======
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -15,7 +13,7 @@ import androidx.compose.ui.unit.sp
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
-fun Login() {
+fun Signup() {
 
     Surface(
         modifier = Modifier.fillMaxSize(),
@@ -35,36 +33,31 @@ fun Login() {
                 modifier = Modifier.padding(vertical = 10.dp),
                 textAlign = TextAlign.Center
             )
-            var NameIn = TextField("Enter Your Name")
-            var PasswordIn = TextField("Enter Your Password")
-            LoginToAccount(NameIn, PasswordIn)
+            InputBox(label = "Enter Your Name")
+            InputBox(label = "Enter Your Password")
+            InputBox(label = "Confirm Password")
+            CreateAccount()
         }
     }
 }
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextField(StartLabel: String): String{
+fun InputBox(label: String){
     var text by remember { mutableStateOf(TextFieldValue("")) }
     OutlinedTextField(
-        label = { Text(text = StartLabel) },
         value = text,
+        label = { Text(text = "$label") },
         onValueChange = {
             text = it
         },
         modifier = Modifier.padding(horizontal = 100.dp)
     )
-    return "$text"
 }
 
 @Composable
-fun LoginToAccount(NameIn: String, PasswordIn: String ){
+fun CreateAccount(){
     Button(onClick = {}, modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
         Text(text = "Create")
     }
-    if(NameIn != "" && PasswordIn != ""){
-
-    }
 }
->>>>>>> origin/Dom
