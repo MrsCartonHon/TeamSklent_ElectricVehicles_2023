@@ -32,17 +32,17 @@ fun Home() {
     }
     Column {
         //List user's tractors here
-        ListItem(
-            headlineContent = { Text("Two line list item with trailing") },
-            supportingContent = { Text("Secondary text") },
-            trailingContent = { Text("meta") },
-            leadingContent = {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Localized description",
-                )
-            }
-        )
+//        ListItem(
+//            headlineContent = { Text("Two line list item with trailing") },
+//            supportingContent = { Text("Secondary text") },
+//            trailingContent = { Text("meta") },
+//            leadingContent = {
+//                Icon(
+//                    Icons.Filled.Favorite,
+//                    contentDescription = "Localized description",
+//                )
+//            }
+//        )
         Divider()
     }
 

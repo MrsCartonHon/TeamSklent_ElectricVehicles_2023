@@ -57,7 +57,9 @@ fun InputBox(label: String){
 
 @Composable
 fun CreateAccount(){
-    Button(onClick = {}, modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
+    Button(onClick = {}, modifier = Modifier.padding(horizontal = 100.dp, vertical = 0.dp)) {
         Text(text = "Create")
     }
 }
+
+

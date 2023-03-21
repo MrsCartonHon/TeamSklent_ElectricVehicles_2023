@@ -1,7 +1,7 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -9,6 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,28 +36,14 @@ fun Login() {
                 modifier = Modifier.padding(vertical = 10.dp),
                 textAlign = TextAlign.Center
             )
-            var NameIn = TextField("Enter Your Name")
-            var PasswordIn = TextField("Enter Your Password")
-            LoginToAccount(NameIn, PasswordIn)
+            InputBox("Enter Your Username")
+            InputBox(label = "Enter Your Password")
+            LogIntoAccount()
+//            LoginToAccount(NameIn, PasswordIn)
         }
     }
 }
 
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TextField(StartLabel: String): String{
-    var text by remember { mutableStateOf(TextFieldValue("")) }
-    OutlinedTextField(
-        label = { Text(text = StartLabel) },
-        value = text,
-        onValueChange = {
-            text = it
-        },
-        modifier = Modifier.padding(horizontal = 100.dp)
-    )
-    return "$text"
-}
 
 @Composable
 fun LoginToAccount(NameIn: String, PasswordIn: String ){
@@ -67,4 +54,11 @@ fun LoginToAccount(NameIn: String, PasswordIn: String ){
 
     }
 }
->>>>>>> origin/Dom
+
+@Composable
+fun LogIntoAccount(){
+    Button(onClick = {}, modifier = Modifier.padding(horizontal = 100.dp, vertical = 0.dp)) {
+        Text(text = "Create")
+    }
+}
+//>>>>>>> origin/Dom
