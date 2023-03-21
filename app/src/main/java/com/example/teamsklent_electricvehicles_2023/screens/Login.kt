@@ -1,7 +1,6 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-<<<<<<< HEAD
-=======
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -67,4 +66,4 @@ fun LoginToAccount(NameIn: String, PasswordIn: String ){
 
     }
 }
->>>>>>> origin/Dom
+

@@ -101,11 +101,19 @@ fun BottomNavigationBar(navController: NavHostController) {
                 },
 
                 icon = {
-                    Icon(
-                        imageVector = navItem.image,
-                        contentDescription = navItem.title,
-                        tint = JDYellow
-                    )
+                    if(currentRoute == navItem.route) {
+                        Icon(
+                            imageVector = navItem.iconSelected,
+                            contentDescription = navItem.title,
+                            tint = JDYellow
+                        )
+                    }else{
+                        Icon(
+                            imageVector = navItem.icon,
+                            contentDescription = navItem.title,
+                            tint = JDYellow
+                        )
+                    }
                 },
 
                 label = {

@@ -10,21 +10,21 @@ object NavBarItems {
     val BarItems = listOf(
         BarItem(
             title = "Home",
-            image = Icons.Filled.Home,
-            route = "Home",
-            navBar = true
+            icon = Icons.Default.Home,
+            iconSelected = Icons.Filled.Home,
+            route = "Home"
         ),
         BarItem(
             title = "Logs",
-            image = Icons.Filled.Edit,
-            route = "Log",
-            navBar = true
+            icon = Icons.Default.Edit,
+            iconSelected = Icons.Filled.Edit,
+            route = "Log"
         ),
         BarItem(
             title = "Account",
-            image = Icons.Filled.Face,
-            route = "Account",
-            navBar = true
+            icon = Icons.Default.Face,
+            iconSelected = Icons.Filled.Face,
+            route = "Account"
         )
     )
 }

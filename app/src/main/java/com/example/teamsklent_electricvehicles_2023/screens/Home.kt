@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -16,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+@Preview
 @Composable
 fun Home() {
 
@@ -31,19 +31,7 @@ fun Home() {
         )
     }
     Column {
-        //List user's tractors here
-        ListItem(
-            headlineContent = { Text("Two line list item with trailing") },
-            supportingContent = { Text("Secondary text") },
-            trailingContent = { Text("meta") },
-            leadingContent = {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Localized description",
-                )
-            }
-        )
-        Divider()
+
     }
 
 }

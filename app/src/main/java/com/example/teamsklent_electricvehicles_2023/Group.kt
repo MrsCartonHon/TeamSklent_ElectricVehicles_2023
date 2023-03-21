@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class Group(val name: String, val creator: User, managerUsers: MutableList<User>, operatorUsers: MutableList<User>) {
-    val createdBy = creator
+
     val createdOn = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
     var managers = managerUsers
     var operators = operatorUsers
