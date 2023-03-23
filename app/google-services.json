@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "142179141534",
+    "project_id": "jdconnect-45f8d",
+    "storage_bucket": "jdconnect-45f8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142179141534:android:bdd8020836ac53d5e4b88f",
+        "android_client_info": {
+          "package_name": "com.example.teamsklent_electricvehicles_2023"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142179141534-pom4q8mno258oa5d48rmghpf9i52di2t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-4VjLlR8ZdRSfgraiAhEPtxder0_8kq4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142179141534-pom4q8mno258oa5d48rmghpf9i52di2t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
