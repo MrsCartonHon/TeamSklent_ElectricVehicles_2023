@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Composable
 fun Home() {
 
@@ -30,20 +29,4 @@ fun Home() {
                 .align(Alignment.Center)
         )
     }
-    Column {
-        //List user's tractors here
-        ListItem(
-            headlineContent = { Text("Two line list item with trailing") },
-            supportingContent = { Text("Secondary text") },
-            trailingContent = { Text("meta") },
-            leadingContent = {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Localized description",
-                )
-            }
-        )
-        Divider()
-    }
-
 }
