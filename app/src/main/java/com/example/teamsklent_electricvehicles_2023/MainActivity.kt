@@ -9,8 +9,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.material3.*
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -19,6 +17,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import com.example.teamsklent_electricvehicles_2023.screens.Account
 import com.example.teamsklent_electricvehicles_2023.screens.Home
+import com.example.teamsklent_electricvehicles_2023.screens.Login
 import com.example.teamsklent_electricvehicles_2023.screens.Logs
 import com.example.teamsklent_electricvehicles_2023.ui.theme.*
 
@@ -70,11 +69,12 @@ fun NavigationHost(navController: NavHostController) {
         composable(NavRoutes.Account.route) {
             Account()
         }
-        /**
-         * *
-         */
+
         composable(NavRoutes.Logs.route) {
             Logs()
+        }
+        composable(NavRoutes.Login.route){
+            Login()
         }
     }
 }
@@ -99,7 +99,6 @@ fun BottomNavigationBar(navController: NavHostController) {
                         restoreState = true
                     }
                 },
-
                 icon = {
                     if(currentRoute == navItem.route) {
                         Icon(
@@ -115,12 +114,10 @@ fun BottomNavigationBar(navController: NavHostController) {
                         )
                     }
                 },
-
                 label = {
                     Text(text = navItem.title)
                 },
                 alwaysShowLabel = false,
-
             )
         }
     }

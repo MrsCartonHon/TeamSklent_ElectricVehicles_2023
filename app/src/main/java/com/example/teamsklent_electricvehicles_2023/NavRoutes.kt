@@ -7,4 +7,5 @@ sealed class NavRoutes(val route: String) {
     object Logs : NavRoutes("Log")
     object Account : NavRoutes("Account")
     object Login : NavRoutes("Login")
+    object Signup : NavRoutes("Signup")
 }
