@@ -33,6 +33,7 @@ class MainActivity() : ComponentActivity() {
     }
 
 }
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -62,6 +63,7 @@ fun NavigationHost(navController: NavHostController) {
         navController = navController,
         startDestination = NavRoutes.Home.route,
     ) {
+
         composable(NavRoutes.Home.route) {
             Home()
         }
@@ -110,7 +112,7 @@ fun BottomNavigationBar(navController: NavHostController) {
                         Icon(
                             imageVector = navItem.icon,
                             contentDescription = navItem.title,
-                            tint = JDYellow
+                            tint = JDBlack
                         )
                     }
                 },

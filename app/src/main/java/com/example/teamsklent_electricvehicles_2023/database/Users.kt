@@ -6,9 +6,10 @@ import java.util.*
 abstract class Users(val db : FirebaseFirestore) {
 
     data class User(
-        internal var name: String = "",
+        internal var name: String,
         internal var id: UUID = UUID.randomUUID(), // identifier of user
-
+        internal var password: String = "", // Password of the user
+        internal var fleets: ArrayList<Fleet>
     )
 
 
