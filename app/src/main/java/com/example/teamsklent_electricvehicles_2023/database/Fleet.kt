@@ -10,8 +10,6 @@ abstract class Fleet(val db : FirebaseFirestore) {
      * Information about a company or 'Fleet'
      *
      */
-
-
     class FleetData(
         internal var id: UUID = UUID.randomUUID(), // identifier of fleet
         internal var name: String = "", // name of the company
@@ -19,17 +17,46 @@ abstract class Fleet(val db : FirebaseFirestore) {
         private var members: ArrayList<User> = ArrayList() // employees within the fleet aside from the owner
     ){
         /**
-         *
+         *@param [currentUser] The user currently is the fleet owner for verification
          */
         fun isOwner(currentUser: User) :Boolean{
             return (currentUser.id == owner.id && currentUser.password == owner.password)
         }
+
+        /**
+         * @return Returns all employees of a Fleet
+         */
         fun members(): ArrayList<User> {
             return this.members
         }
+
+        /**
+         * Adds a new [User] Employee to the Fleet
+         * @param [currentUser] uses the [isOwner] method for verification
+         * @param [newUser] The new employee to be added to the fleet
+         */
         fun addMember(currentUser: User, newUser:User){
             if(isOwner(currentUser)) {
                 members.add(newUser)
+            } else{
+                throw Exception("Invalid User")
+            }
+        }
+
+        /**
+         * removes a specified [User] from the Fleet employee list
+         * @param [currentUser] uses the [isOwner] method for verification
+         * @param [oldUser] Removes a [User] from the Fleet employee list
+         * @exception NoSuchElementException The [oldUser] [User] does not exist
+         * @throws NoSuchElementException you're a bum
+         */
+        fun removeMember(currentUser: User, oldUser:User){
+            if(isOwner(currentUser)) {
+                try {
+                    members.remove(oldUser)
+                }catch(exception: NoSuchElementException){
+                    exception.localizedMessage
+                }
             }
         }
     }

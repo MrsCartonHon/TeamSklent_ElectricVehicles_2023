@@ -23,3 +23,10 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
     id 'org.jetbrains.dokka' version '1.8.10' apply true
 }
+dokkaHtml {
+    outputDirectory.set(file("documentation/html"))
+}
+
+dokkaGfm {
+    outputDirectory.set(file("documentation/markdown"))
+}
