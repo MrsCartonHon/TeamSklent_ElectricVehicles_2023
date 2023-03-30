@@ -15,10 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
-import com.example.teamsklent_electricvehicles_2023.screens.Account
-import com.example.teamsklent_electricvehicles_2023.screens.Home
-import com.example.teamsklent_electricvehicles_2023.screens.Login
-import com.example.teamsklent_electricvehicles_2023.screens.Logs
+import com.example.teamsklent_electricvehicles_2023.screens.*
 import com.example.teamsklent_electricvehicles_2023.ui.theme.*
 
 class MainActivity() : ComponentActivity() {
@@ -77,6 +74,9 @@ fun NavigationHost(navController: NavHostController) {
         }
         composable(NavRoutes.Login.route){
             Login()
+        }
+        composable(NavRoutes.Signup.route){
+            Signup()
         }
     }
 }
