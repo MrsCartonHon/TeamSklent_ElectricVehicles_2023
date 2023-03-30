@@ -1,6 +1,5 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -12,13 +11,18 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.firebase.ktx.Firebase
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+
+
+
 
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun Login() {
+
+
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -74,6 +78,7 @@ fun login(email: String, password: String) {
                 // return to home page
             } else {
                 // maybe they dont have an account??
+
             }
         }
 }

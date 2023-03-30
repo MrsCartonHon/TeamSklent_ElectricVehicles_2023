@@ -10,55 +10,68 @@ abstract class Fleet(val db : FirebaseFirestore) {
      * Information about a company or 'Fleet'
      *
      */
+
+
     class FleetData(
         internal var id: UUID = UUID.randomUUID(), // identifier of fleet
         internal var name: String = "", // name of the company
-        internal var owner: User, // identifier of owner
-        private var members: ArrayList<User> = ArrayList() // employees within the fleet aside from the owner
+        private var owner: User, // identifier of owner
+        private var managers: ArrayList<User> = ArrayList(), // managers of the fleet
+        private var members: ArrayList<User> = ArrayList() // employees within the fleet aside from the owner and managers
     ){
         /**
-         *@param [currentUser] The user currently is the fleet owner for verification
+         * @param [currentUser] the user that is currently logged in
+         * @return whether or not the current user is the fleetOwner
          */
         fun isOwner(currentUser: User) :Boolean{
-            return (currentUser.id == owner.id && currentUser.password == owner.password)
+            return owner.equals(currentUser)
         }
-
         /**
-         * @return Returns all employees of a Fleet
+         * @return An [ArrayList] of [User] that are non manager members
          */
         fun members(): ArrayList<User> {
-            return this.members
+            return members
         }
-
         /**
-         * Adds a new [User] Employee to the Fleet
-         * @param [currentUser] uses the [isOwner] method for verification
-         * @param [newUser] The new employee to be added to the fleet
+         * @return An [ArrayList] of [User] of manager members
          */
+        fun managers(): ArrayList<User> {
+            return this.managers
+        }
         fun addMember(currentUser: User, newUser:User){
             if(isOwner(currentUser)) {
                 members.add(newUser)
-            } else{
-                throw Exception("Invalid User")
+            }
+        }
+        fun isManager(someUser: User): Boolean {
+            if(managers().isEmpty().not()){
+                managers.forEach(){
+                    if(someUser.equals(it)){
+                        return true
+                    }
+                }
+            } else {
+                return false
             }
         }
 
-        /**
-         * removes a specified [User] from the Fleet employee list
-         * @param [currentUser] uses the [isOwner] method for verification
-         * @param [oldUser] Removes a [User] from the Fleet employee list
-         * @exception NoSuchElementException The [oldUser] [User] does not exist
-         * @throws NoSuchElementException you're a bum
-         */
-        fun removeMember(currentUser: User, oldUser:User){
-            if(isOwner(currentUser)) {
-                try {
-                    members.remove(oldUser)
-                }catch(exception: NoSuchElementException){
-                    exception.localizedMessage
+        fun isMember(someUser: User): Boolean {
+            if(members().isEmpty().not()){
+                members.forEach(){
+                    if(someUser.equals(it)){
+                        return true
+                    }
                 }
+            } else {
+                return false
             }
         }
+
+
+        fun makeManager(toBeManager: User){
+
+        }
+
     }
 
 
@@ -69,9 +82,7 @@ abstract class Fleet(val db : FirebaseFirestore) {
         internal var location: Location, // location of job
         internal var employees: List<com.example.teamsklent_electricvehicles_2023.User> = ArrayList(), // list of employees tasked with the job
         internal var completed: Boolean // Is the job completed
-    ){
-
-    }
+    )
 
     data class Location(
         internal var name: String,
