@@ -15,13 +15,12 @@ import androidx.compose.ui.unit.dp
 import com.example.teamsklent_electricvehicles_2023.ExampleUsers
 import com.example.teamsklent_electricvehicles_2023.ListItem
 import com.example.teamsklent_electricvehicles_2023.database.Fleet
-import com.example.teamsklent_electricvehicles_2023.database.Users
 
 @Preview
 @Composable
 fun FleetMangment(){
     val thisFleet: Fleet.FleetData
-    val fleetEmployees: ArrayList<Users.User>
+    val fleetEmployees = ExampleUsers.users
 
 
     var items by remember {
@@ -35,13 +34,13 @@ fun FleetMangment(){
         )
     }
 
-    var openRemoveUser = remember{ mutableStateOf(false) } // Is the dialog open
+    val openRemoveUser = remember{ mutableStateOf(false) } // Is the dialog open
 
-   if(openRemoveUser){
+    if(openRemoveUser.value){
        AlertDialog(
-           containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-           title = { Text(text = "Select Employees") },
-           onDismissRequest = { /*TODO*/ },
+           containerColor = MaterialTheme.colorScheme.tertiaryContainer, //
+           title = { Text(text = "Select Employees") }, //
+           onDismissRequest = { /*TODO*/ }, //
            text = {
                LazyColumn(
                    modifier = Modifier
@@ -62,9 +61,9 @@ fun FleetMangment(){
                            horizontalArrangement = Arrangement.SpaceBetween,
                            verticalAlignment = Alignment.CenterVertically
                        ) {
-                           Text(text = items[i].title)
+                           Text(text = items[i].title) // the title of the
                            if (items[i].isSelected) {
-                               Icon(
+                               Icon( // the selection icon for selected elements
                                    imageVector = Icons.Default.Check,
                                    contentDescription = "Selected",
                                    tint = Color.Green,
@@ -82,8 +81,5 @@ fun FleetMangment(){
                TextButton(onClick = { openRemoveUser.value = false }) { Text(text = "Cancel") }
            }
        )
-   }
-}
-fun getFleet(name:String) :Fleet{
-    return Fleet
+    }
 }

@@ -71,7 +71,7 @@ abstract class Fleet(val db : FirebaseFirestore) {
             return false
         }
         /**
-         *
+         * Make a [User] a manager in the fleet
          */
         fun makeManager(toBeManager: User){
             if(this.isManager(toBeManager)){
