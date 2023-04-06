@@ -6,10 +6,10 @@ import java.util.*
 abstract class Users(val db : FirebaseFirestore) {
 
      class User(
-        internal var name: String,
-        internal var id: UUID = UUID.randomUUID(), // identifier of user
-        internal var password: String = "", // Password of the user
-        internal var fleets: ArrayList<Fleet>
+         internal var name: String,
+         internal var id: String = UUID.randomUUID(), // identifier of user
+         internal var password: String = "", // Password of the user
+         internal var fleets: ArrayList<Fleet>
     ){
          @Override
          fun equals(comparedUser: User) :Boolean{

@@ -8,9 +8,7 @@ abstract class Fleet(val db : FirebaseFirestore) {
 
     /**
      * Information about a company or 'Fleet'
-     *
      */
-
 
     class FleetData(
         internal var id: UUID = UUID.randomUUID(), // identifier of fleet
@@ -38,11 +36,17 @@ abstract class Fleet(val db : FirebaseFirestore) {
         fun managers(): ArrayList<User> {
             return this.managers
         }
+        /**
+         * @param currentUser the current [User] that is logged in
+         */
         fun addMember(currentUser: User, newUser:User){
             if(isOwner(currentUser)) {
                 members.add(newUser)
             }
         }
+        /**
+         * @param someUser the [User] that is to be added to the list of managers
+         */
         fun isManager(someUser: User): Boolean {
             if(managers().isEmpty().not()){
                 managers.forEach(){
@@ -50,11 +54,12 @@ abstract class Fleet(val db : FirebaseFirestore) {
                         return true
                     }
                 }
-            } else {
-                return false
             }
+            return false
         }
-
+        /**
+         *
+         */
         fun isMember(someUser: User): Boolean {
             if(members().isEmpty().not()){
                 members.forEach(){
@@ -62,14 +67,20 @@ abstract class Fleet(val db : FirebaseFirestore) {
                         return true
                     }
                 }
-            } else {
-                return false
             }
+            return false
         }
-
-
+        /**
+         * Make a [User] a manager in the fleet
+         */
         fun makeManager(toBeManager: User){
+            if(this.isManager(toBeManager)){
 
+            }else if(this.isMember(toBeManager)){
+                this.managers.remove(toBeManager)
+            }else{
+                managers.add(toBeManager)
+            }
         }
 
     }

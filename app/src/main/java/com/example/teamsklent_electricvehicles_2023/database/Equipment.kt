@@ -26,8 +26,11 @@ abstract class Equipment(val db : FirebaseFirestore) {
         internal var totalCapacity: Double,
         internal var remainingCapacity: Double,
     ){
-        fun getLocation(){
-
+        fun getLocation(): Location {
+            return this.location
+        }
+        fun updateLocation(newLocation: Location){
+            this.location = newLocation
         }
 
     }
