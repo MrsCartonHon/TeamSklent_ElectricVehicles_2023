@@ -37,7 +37,7 @@ fun showJobs(jobs: List<Fleet.Job>){
                Text(job.jobName)
             },
             supportingText = {
-                Text("${numOfEmployees(job.employees)}")
+                //Text("${numOfEmployees(job.employees)}")
             },
             trailingContent = {
                 val checked = job.completed

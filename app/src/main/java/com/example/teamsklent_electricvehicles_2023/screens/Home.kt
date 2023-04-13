@@ -15,3 +15,11 @@ fun Home() {
     }
 }
 
+fun getWeather(val lat, val lon){
+
+    // Get your IP asynchronously
+    get(url = "https://api.weather.gov/points/${lat},${lon}")
+        .subscribe { response : Response ->
+            val ipAddress = response.jsonObject.getString("origin")
+        }
+}
