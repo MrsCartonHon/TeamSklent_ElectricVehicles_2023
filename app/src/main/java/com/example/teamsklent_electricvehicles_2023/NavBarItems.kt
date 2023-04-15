@@ -3,6 +3,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
+import com.example.teamsklent_electricvehicles_2023.models.BarItem
+
 /**
  * All of the items in the NavigationBar
  */

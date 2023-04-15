@@ -1,4 +1,4 @@
-package com.example.teamsklent_electricvehicles_2023
+package com.example.teamsklent_electricvehicles_2023.models
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

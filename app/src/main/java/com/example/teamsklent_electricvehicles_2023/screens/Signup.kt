@@ -8,27 +8,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-fun register(name : String, email : String, password : String) {
+fun register(name : String, email : String, password : String, navController: NavHostController) {
     val auth = Firebase.auth
 
     auth.createUserWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
-
+                navController.navigate(NavRoutes.Home.route)
             }
         }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun Signup() {
+fun Signup(navController: NavHostController) {
     var name by remember { mutableStateOf(TextFieldValue("")) }
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
@@ -89,7 +89,7 @@ fun Signup() {
 
             Button(onClick = {
                 if (password.text == passwordConfirm.text) {
-                    register(name.text, email.text, password.text)
+                    register(name.text, email.text, password.text, navController)
                 } else {
                     // passwords don't match display error
                 }

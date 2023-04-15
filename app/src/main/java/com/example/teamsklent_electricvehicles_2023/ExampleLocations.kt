@@ -1,6 +1,6 @@
 package com.example.teamsklent_electricvehicles_2023
 
-import com.example.teamsklent_electricvehicles_2023.database.Fleet.Location
+import com.example.teamsklent_electricvehicles_2023.models.Location
 
 object ExampleLocations {
     val Locations = listOf(

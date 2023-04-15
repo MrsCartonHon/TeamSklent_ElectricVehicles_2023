@@ -8,19 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-
-
-
 @OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun Login() {
+fun Login(navController: NavHostController) {
 
 
     var email by remember { mutableStateOf(TextFieldValue("")) }
@@ -62,20 +59,31 @@ fun Login() {
                 modifier = Modifier.padding(horizontal = 100.dp)
             )
 
-            Button(onClick = { login(email.text, password.text) }, modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
+            Button(
+                onClick = {
+                    if(!email.equals("") && !password.equals("")){
+                        login(email.text, password.text)
+                    }
+                },
+                modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
                 Text(text = "Login")
             }
+            TextButton(
+                onClick = { navController.navigate(NavRoutes.Signup.route) },
+                content = { Text(text = "Don't have an account? Sign Up!")}
+            )
         }
     }
 }
 
 fun login(email: String, password: String) {
-    val auth = Firebase.auth
+    val localAuth = Firebase.auth
 
-    auth.signInWithEmailAndPassword(email, password)
+    localAuth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 // return to home page
+
             } else {
                 // maybe they dont have an account??
 
