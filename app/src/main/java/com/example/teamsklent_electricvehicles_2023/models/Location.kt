@@ -1,13 +1,13 @@
 package com.example.teamsklent_electricvehicles_2023.models
 
-import com.google.gson.Gson
+import com.fasterxml.jackson.annotation.JsonBackReference
 
 class Location(
-    internal var name: String,
-    internal var lat: Double,
-    internal var lon: Double
+    @JsonBackReference
+    var fleet: Fleet, // identifier of fleet assigned to
+    var name: String,
+    var lat: Double,
+    var lon: Double
 ){
-    fun toJSON():String{
-        return Gson().toJson(this)
-    }
+
 }

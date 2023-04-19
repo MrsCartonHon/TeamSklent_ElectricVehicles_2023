@@ -49,6 +49,8 @@ android {
         jvmTarget = '1.8'
     }
 
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.14.+"
+
 }
 
 dependencies {

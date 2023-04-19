@@ -18,6 +18,7 @@ fun Logs(navController: NavHostController) {
     ) {
         //showJobs(jobs = ExampleJobs.jobs)
     }
+
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
