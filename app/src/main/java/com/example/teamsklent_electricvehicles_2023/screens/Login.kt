@@ -34,7 +34,7 @@ fun Login(navController: NavHostController) {
             //TODO Add John Deere Logo
 
             Text(
-                text = "Create Your Account",
+                text = "Login To Account",
                 style = TextStyle(
                     fontSize = 24.sp
                 ),
@@ -82,11 +82,11 @@ fun login(email: String, password: String) {
     localAuth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                // return to home page
+                /*TODO return to home page*/
 
             } else {
                 // maybe they dont have an account??
-
+                /*TODO alert they dont have an account*/
             }
         }
 }

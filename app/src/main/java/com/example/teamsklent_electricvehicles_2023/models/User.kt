@@ -1,5 +1,6 @@
 package com.example.teamsklent_electricvehicles_2023.models
 
+
 class User{
     var userName: String
     var fName: String

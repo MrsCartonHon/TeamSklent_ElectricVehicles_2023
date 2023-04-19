@@ -76,14 +76,18 @@ class Fleet{
         return this.managers
     }
     /**
-     * If the [currentUser] is a manager or the owner the [newUser] becomes a member of the fleet
-     * @param currentUser [User] that is logged in
+     * Adds a [newMember] to the Fleet members
      * @param newUser [User] to be added
      */
-    fun addMember(currentUser: User, newUser: User){
-        if(isOwner(currentUser) || isManager(currentUser)) {
-            members.add(newUser)
-        }
+    fun addMember(newMember: User){
+        members.add(newMember)
+    }
+    /**
+     * Adds a [user] to the Fleet Ma
+     * @param newManager [User] to be added
+     */
+    fun addManager(newManager: User){
+        managers.add(newManager)
     }
     /**
      * Assesses if a [User] is a manager of the Fleet

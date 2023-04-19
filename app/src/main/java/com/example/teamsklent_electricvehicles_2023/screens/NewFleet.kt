@@ -12,20 +12,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.teamsklent_electricvehicles_2023.DominicUser
-import com.example.teamsklent_electricvehicles_2023.database.Fleet
+import com.example.teamsklent_electricvehicles_2023.models.Fleet
 import com.example.teamsklent_electricvehicles_2023.models.User
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
-
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
 fun NewFleet(){
 
@@ -75,8 +71,8 @@ fun NewFleet(){
                         Log.i("firebase", "Got value ${it.value}")
                     }.addOnFailureListener{
                         Log.e("firebase", "Error getting data", it)
-                        val newFleet = Fleet(name.toString(),DominicUser.dominic)
-                        database.child("fleets").child(name.toString()).setValue(Gson().toJson(this))
+                        val newFleet = Fleet(name.toString(),DominicUser.owner)
+                        //database.child("fleets").child(name.toString()).setValue(Gson().toJson(this))
                     }
                 },
                 modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {

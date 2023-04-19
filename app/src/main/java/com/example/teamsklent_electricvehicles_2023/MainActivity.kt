@@ -5,6 +5,7 @@ package com.example.teamsklent_electricvehicles_2023
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
@@ -14,8 +15,11 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import com.example.teamsklent_electricvehicles_2023.models.Fleet
+import com.example.teamsklent_electricvehicles_2023.models.User
 import com.example.teamsklent_electricvehicles_2023.screens.*
 import com.example.teamsklent_electricvehicles_2023.ui.theme.*
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -47,7 +51,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(auth: FirebaseAuth?) {
     val navController = rememberNavController()
-
     Scaffold(
         //topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
         content = { NavigationHost(navController = navController) },
@@ -57,6 +60,10 @@ fun MainScreen(auth: FirebaseAuth?) {
             }
         }
     )
+    val fakeFleet = Fleet("Fake Fleet", DominicUser.owner)
+    fakeFleet.addMember(User("nirmal05", "Nirmal", "Alla", "nirmal.alla@gmail.com"))
+    fakeFleet.addManager(User("jackson05", "Jackson", "GermanWord", "jackson.germanword@outlook.com"))
+    Log.i("Fleet JSON", jacksonObjectMapper().writeValueAsString(fakeFleet))
 }
 
 @Composable
