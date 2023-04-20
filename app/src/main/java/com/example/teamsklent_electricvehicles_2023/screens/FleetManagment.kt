@@ -4,11 +4,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
+import com.example.teamsklent_electricvehicles_2023.models.Fleet
 import com.example.teamsklent_electricvehicles_2023.models.User
 
 @Composable
 fun FleetManagment(navController: NavHostController){
-
+    val thisFleet: Fleet
     val fleetEmployees: ArrayList<User>
 
 

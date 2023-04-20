@@ -16,6 +16,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
 import com.example.teamsklent_electricvehicles_2023.models.Fleet
+import com.example.teamsklent_electricvehicles_2023.models.Location
 import com.example.teamsklent_electricvehicles_2023.models.User
 import com.example.teamsklent_electricvehicles_2023.screens.*
 import com.example.teamsklent_electricvehicles_2023.ui.theme.*
@@ -55,14 +56,16 @@ fun MainScreen(auth: FirebaseAuth?) {
         //topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
         content = { NavigationHost(navController = navController) },
         bottomBar = {
-            if(auth == null) {
+            if(auth != null) {
                 BottomNavigationBar(navController = navController)
             }
         }
     )
     val fakeFleet = Fleet("Fake Fleet", DominicUser.owner)
     fakeFleet.addMember(User("nirmal05", "Nirmal", "Alla", "nirmal.alla@gmail.com"))
-    fakeFleet.addManager(User("jackson05", "Jackson", "GermanWord", "jackson.germanword@outlook.com"))
+    fakeFleet.addManager(User("jackson05", "Jackson", "GermanWord", "jackson.germanword@gmail.com"))
+    fakeFleet.locations.add(Location(fakeFleet,"Bettendorf High school", 41.5527552, -90.4718601))
+    fakeFleet.locations.add(Location(fakeFleet, "JD World Headquarters", 41.476482, -90.42467))
     Log.i("Fleet JSON", jacksonObjectMapper().writeValueAsString(fakeFleet))
 }
 
