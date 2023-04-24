@@ -22,7 +22,7 @@ fun Account(navController: NavHostController) {
             style = Typography.bodyLarge
         )
     }
-    Column {
+    Column(content = {
         Text(text = "Fleets")
 
         Row(content = {
@@ -33,5 +33,5 @@ fun Account(navController: NavHostController) {
         Divider()
 
         Text( text = "Edit Account")
-    }
+    })
 }

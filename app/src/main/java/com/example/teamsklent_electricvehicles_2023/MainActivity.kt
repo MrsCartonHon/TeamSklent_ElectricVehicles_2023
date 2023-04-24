@@ -15,14 +15,11 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
-import com.example.teamsklent_electricvehicles_2023.models.Fleet
-import com.example.teamsklent_electricvehicles_2023.models.Location
-import com.example.teamsklent_electricvehicles_2023.models.User
+import com.example.teamsklent_electricvehicles_2023.models.*
 import com.example.teamsklent_electricvehicles_2023.screens.*
 import com.example.teamsklent_electricvehicles_2023.ui.theme.*
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.google.firebase.auth.FirebaseAuth
-
 
 
 class MainActivity : ComponentActivity() {
@@ -61,12 +58,19 @@ fun MainScreen(auth: FirebaseAuth?) {
             }
         }
     )
-    val fakeFleet = Fleet("Fake Fleet", DominicUser.owner)
-    fakeFleet.addMember(User("nirmal05", "Nirmal", "Alla", "nirmal.alla@gmail.com"))
-    fakeFleet.addManager(User("jackson05", "Jackson", "GermanWord", "jackson.germanword@gmail.com"))
-    fakeFleet.locations.add(Location(fakeFleet,"Bettendorf High school", 41.5527552, -90.4718601))
-    fakeFleet.locations.add(Location(fakeFleet, "JD World Headquarters", 41.476482, -90.42467))
-    Log.i("Fleet JSON", jacksonObjectMapper().writeValueAsString(fakeFleet))
+    val nirmal = User("nirmal05", "Nirmal", "Alla", "nirmal.alla@gmail.com")
+    val jackson = User("jackson05", "Jackson", "Tagtmeier", "jakson@gmail.com")
+    val dominic =  User("dominic05", "Dominic", "Halbur", "dominic.halbur@outlook.com")
+    val exampleFleet = Fleet("Fake example fleet", dominic)
+    val bhs = Location(exampleFleet,"Bettendorf High school", 41.5527552, -90.4718601)
+    val jdh = Location(exampleFleet, "JD World Headquarters", 41.476482, -90.42467)
+    val equip1 = Equipment(exampleFleet, "equip1", EquipmentModel.EXC350,  exampleFleet.members, bhs, System.currentTimeMillis().toDouble(), 0.0, 0.0)
+    exampleFleet.addMember(nirmal)
+    exampleFleet.addManager(jackson)
+    exampleFleet.locations.add(bhs)
+    exampleFleet.locations.add(jdh)
+    exampleFleet.fleetEquipment.add(equip1)
+    Log.i("Fleet JSON", jacksonObjectMapper().writeValueAsString(exampleFleet))
 }
 
 @Composable

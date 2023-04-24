@@ -18,6 +18,8 @@ class Fleet{
     var fleetEquipment: ArrayList<Equipment>  // The Equipment owned by the fleet
     @JsonManagedReference
     var locations: ArrayList<Location> // The Saved locations of the Fleet
+//    @JsonManagedReference
+//    lateinit var permissions: FleetPermissions
 
 
     /**
@@ -57,6 +59,16 @@ class Fleet{
     }
 
     /**
+     * @return All employees excluding the owner (managers + members)
+     */
+    fun getEmployees(): ArrayList<User> {
+        val employeeList: ArrayList<User> = ArrayList()
+        employeeList.addAll(managers)
+        employeeList.addAll(members)
+        return employeeList
+    }
+
+    /**
      * @param [currentUser] the user that is currently logged in
      * @return whether or not the current user is the fleetOwner
      */
@@ -79,15 +91,27 @@ class Fleet{
      * Adds a [newMember] to the Fleet members
      * @param newUser [User] to be added
      */
-    fun addMember(newMember: User){
-        members.add(newMember)
+    fun addMember(toBeMember: User){
+        if(this.isMember(toBeMember)){
+            // Already a manager
+        }else if(this.isManager(toBeMember)){
+            this.managers.remove(toBeMember) // removes User from manager list
+        }else{
+            members.add(toBeMember) // adds user to manager list
+        }
     }
     /**
-     * Adds a [user] to the Fleet Ma
+     * Adds a [user] to the Fleet Managers
      * @param newManager [User] to be added
      */
-    fun addManager(newManager: User){
-        managers.add(newManager)
+    fun addManager(toBeManager: User){
+        if(this.isManager(toBeManager)){
+            // Already a manager
+        }else if(this.isMember(toBeManager)){
+            this.members.remove(toBeManager) // removes User from member list
+        }else{
+            managers.add(toBeManager) // adds user to manager list
+        }
     }
     /**
      * Assesses if a [User] is a manager of the Fleet
@@ -115,18 +139,6 @@ class Fleet{
             }
         }
         return false
-    }
-    /**
-     * Make a [User] a manager in the fleet
-     */
-    fun makeManager(toBeManager: User){
-        if(this.isManager(toBeManager)){
-            // Already a manager
-        }else if(this.isMember(toBeManager)){
-            this.managers.remove(toBeManager) // removes User from member list
-        }else{
-            managers.add(toBeManager) // adds user to manager list
-        }
     }
     fun identifier(): String{
         return name

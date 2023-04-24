@@ -1,6 +1,5 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,18 +13,13 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.teamsklent_electricvehicles_2023.DominicUser
-import com.example.teamsklent_electricvehicles_2023.models.Fleet
 import com.example.teamsklent_electricvehicles_2023.models.User
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewFleet(){
 
-    var database: DatabaseReference = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com/")
+    //var database: DatabaseReference = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com/")
 
 
     var name by remember { mutableStateOf(TextFieldValue("")) }
@@ -65,15 +59,15 @@ fun NewFleet(){
 
             Button(
                 onClick = {
-                    Log.i("firebase"," ${database.child("fleets").get()} exists")
-
-                    database.child("fleets").child(name.toString()).get().addOnSuccessListener {
-                        Log.i("firebase", "Got value ${it.value}")
-                    }.addOnFailureListener{
-                        Log.e("firebase", "Error getting data", it)
-                        val newFleet = Fleet(name.toString(),DominicUser.owner)
-                        //database.child("fleets").child(name.toString()).setValue(Gson().toJson(this))
-                    }
+//                    Log.i("firebase"," ${database.child("fleets").get()} exists")
+//
+//                    database.child("fleets").child(name.toString()).get().addOnSuccessListener {
+//                        Log.i("firebase", "Got value ${it.value}")
+//                    }.addOnFailureListener{
+//                        Log.e("firebase", "Error getting data", it)
+//                        val newFleet = Fleet(name.toString(),DominicUser.owner)
+//                        //database.child("fleets").child(name.toString()).setValue(Gson().toJson(this))
+//                    }
                 },
                 modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
                 Text(text = "Create Company")

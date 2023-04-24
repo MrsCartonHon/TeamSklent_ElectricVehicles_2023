@@ -2,7 +2,6 @@ package com.example.teamsklent_electricvehicles_2023.models
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
-import java.sql.Time
 
 class Equipment(
 
@@ -13,7 +12,7 @@ class Equipment(
     @JsonManagedReference
     var employees: ArrayList<User>, // assigned employees to this equipment
     var location: Location, // location of the equipment
-    var lastChargedAt: Time,
+    var lastChargedAt: Double,
     var totalCapacity: Double,
     var remainingCapacity: Double
 ){
