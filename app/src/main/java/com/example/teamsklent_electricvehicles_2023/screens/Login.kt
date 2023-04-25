@@ -15,7 +15,8 @@ import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Login(navController: NavHostController) {
 
@@ -31,7 +32,7 @@ fun Login(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            //TODO Add John Deere Logo
+            //Image(painter = painterResource(id = R.mipmap.ic_launcher), contentDescription = "JDConnect Logo")
 
             Text(
                 text = "Login To Account",
@@ -62,7 +63,8 @@ fun Login(navController: NavHostController) {
             Button(
                 onClick = {
                     if(!email.equals("") && !password.equals("")){
-                        login(email.text, password.text)
+                        //login(email.text, password.text)
+                        navController.navigate(NavRoutes.Home.route)
                     }
                 },
                 modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
@@ -85,8 +87,8 @@ fun login(email: String, password: String) {
                 /*TODO return to home page*/
 
             } else {
-                // maybe they dont have an account??
-                /*TODO alert they dont have an account*/
+                // maybe they don't have an account??
+                /*TODO alert they don't have an account*/
             }
         }
 }

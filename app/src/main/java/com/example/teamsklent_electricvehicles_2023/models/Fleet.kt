@@ -59,13 +59,28 @@ class Fleet{
     }
 
     /**
-     * @return All employees excluding the owner (managers + members)
+     * @return All employees owner, managers, members
      */
     fun getEmployees(): ArrayList<User> {
         val employeeList: ArrayList<User> = ArrayList()
         employeeList.addAll(managers)
         employeeList.addAll(members)
+        employeeList.add(owner)
         return employeeList
+    }
+
+    /**
+     * @return The [FleetRoles] of the given user
+     */
+    fun getRole(user:User): FleetRoles? {
+        if(user.equals(owner)){
+            return FleetRoles.Owner
+        }else if(isManager(user)){
+            return FleetRoles.Manager
+        }else if(isMember(user)){
+            return FleetRoles.Member
+        }
+        return null
     }
 
     /**

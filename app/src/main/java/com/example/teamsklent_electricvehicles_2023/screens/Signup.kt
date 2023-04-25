@@ -12,6 +12,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
+import com.example.teamsklent_electricvehicles_2023.ui.theme.JDBlack
+import com.example.teamsklent_electricvehicles_2023.ui.theme.JDYellow
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -42,7 +44,7 @@ fun Signup(navController: NavHostController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            //TODO Add John Deere Logo
+            //Image(painter = painterResource(id = R.mipmap.ic_launcher), contentDescription = "JDConnect Logo")
 
             Text(
                 text = "Create Your Account",
@@ -87,14 +89,17 @@ fun Signup(navController: NavHostController) {
                 modifier = Modifier.padding(horizontal = 100.dp)
             )
 
-            Button(onClick = {
-                if (password.text == passwordConfirm.text) {
-                    register(name.text, email.text, password.text, navController)
-                } else {
-                    // passwords don't match display error
-                }
-
-            }, modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
+            Button(
+                onClick = {
+                    if (password.text == passwordConfirm.text) {
+                        register(name.text, email.text, password.text, navController)
+                    } else {
+                        // passwords don't match display error
+                    }
+                },
+                modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = JDYellow, contentColor = JDBlack)
+                ) {
                 Text(text = "Register")
             }
         }

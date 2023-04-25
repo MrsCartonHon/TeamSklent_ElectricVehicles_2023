@@ -33,7 +33,6 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
-
 @Composable
 fun TeamSklent_ElectricVehicles_2023Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),

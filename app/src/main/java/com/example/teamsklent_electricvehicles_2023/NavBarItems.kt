@@ -23,10 +23,10 @@ object NavBarItems {
             route = "Log"
         ),
         BarItem(
-            title = "Account",
+            title = "Settings",
             icon = Icons.Default.Face,
             iconSelected = Icons.Filled.Face,
-            route = "Account"
+            route = "Settings"
         )
     )
 }
