@@ -8,6 +8,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
@@ -18,7 +19,6 @@ import com.example.teamsklent_electricvehicles_2023.R
 import com.example.teamsklent_electricvehicles_2023.models.*
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun Employee() {
@@ -49,18 +49,18 @@ fun Employee() {
 
     val sortMenu = remember { mutableStateOf(false) }
 
-    var employeesToShow = remember { mutableListOf<User>() }
+    var employeesToShow: ArrayList<User> = exampleFleet.getEmployees()
 
     Column {
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = "Employees",
                 fontSize = 24.sp,
-                modifier = Modifier.absolutePadding(10.dp, 0.dp, 0.dp, 0.dp)
+                modifier = Modifier.absolutePadding(10.dp, 0.dp, 0.dp, 0.dp).align(Alignment.CenterVertically)
             )
             IconButton(
-                onClick = { sortMenu.value = sortMenu.value.not() },
-                modifier = Modifier.absolutePadding(0.dp, 0.dp, 10.dp, 0.dp),
+                onClick = { sortMenu.value = true },
+                modifier = Modifier.absolutePadding(0.dp, 0.dp, 10.dp, 0.dp).align(Alignment.CenterVertically),
                 content = {
                     Icon(
                         imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_sort_24),
@@ -76,11 +76,10 @@ fun Employee() {
                     fontSize = 24.sp
                 )
             } else {
-                Column(content = {
+                Column {
                     employeesToShow.forEach { empl ->
-
                         ListItem(
-                            headlineText = {
+                            headlineContent = {
                                 Text(
                                     text = "${empl.fName} ${empl.lName}",
                                     fontSize = 20.sp
@@ -94,30 +93,32 @@ fun Employee() {
                             }
                         )
                     }
-                })
+                }
             }
         }
     }
 
     // The sort menu
-    DropdownMenu(
-        expanded = sortMenu.value,
-        onDismissRequest = { sortMenu.value = false }
-    ) {
-        DropdownMenuItem(
-            text = { Text("All") },
-            onClick = { employeesToShow = exampleFleet.getEmployees() },
-        )
-        DropdownMenuItem(
-            text = { Text("Managers") },
-            onClick = { employeesToShow = exampleFleet.managers() },
-        )
-        Divider()
-        DropdownMenuItem(
-            text = { Text("Members") },
-            onClick = { employeesToShow = exampleFleet.members() },
-        )
-    }
+   if(sortMenu.value){
+       DropdownMenu(
+           expanded = sortMenu.value,
+           onDismissRequest = { sortMenu.value = false }
+       ) {
+           DropdownMenuItem(
+               text = { Text("All") },
+               onClick = { employeesToShow = exampleFleet.getEmployees() },
+           )
+           DropdownMenuItem(
+               text = { Text("Managers") },
+               onClick = { employeesToShow = exampleFleet.managers() },
+           )
+           Divider()
+           DropdownMenuItem(
+               text = { Text("Members") },
+               onClick = { employeesToShow = exampleFleet.members() },
+           )
+       }
+   }
 
 
 }

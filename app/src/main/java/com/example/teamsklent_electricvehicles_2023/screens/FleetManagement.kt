@@ -1,15 +1,14 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.absolutePadding
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,157 +47,120 @@ fun FleetManagement() {
     exampleFleet.fleetEquipment.add(equip1)
     exampleFleet.fleetEquipment.add(equip2)
     exampleFleet.jobs.add(job1)
+    Column {
 
-
-    Column(content = {
-
-        Row(content = {
+        // List of Fleet Equipment
+        Row(
+            modifier = Modifier.absolutePadding(10.dp, 0.dp, 0.dp, 0.dp)
+        ) {
             Card(
                 onClick = { /* Do Nothing */ },
-                shape = MaterialTheme.shapes.medium,
-                content = {
-                    Row(
-                        content = {
-                            Text(text = "Equipment", fontSize = 24.sp, modifier = Modifier.absolutePadding(10.dp,0.dp,0.dp,0.dp))
-                        }
+                shape = MaterialTheme.shapes.medium
+            ) {
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = "Equipment",
+                        fontSize = 24.sp,
+                        modifier = Modifier.absolutePadding(10.dp, 0.dp, 0.dp, 0.dp)
                     )
-                    if (exampleFleet.fleetEquipment.isEmpty()) {
-                        Text(
-                            text = "No Equipment has been added",
-                            fontSize = 24.sp
+
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(imageVector = ImageVector.vectorResource(id = android.R.drawable.ic_menu_add),
+                            contentDescription = "Add Equipment"
                         )
-                    } else {
-                        exampleFleet.fleetEquipment.forEach {
-                            Card(
-                                modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp),
-                                content = {
-                                    ListItem(
-                                        headlineText = {
-                                            Text(
-                                                text = "${it.model}",
-                                                fontSize = 20.sp
-                                            )
-                                        },
-                                        supportingText = {
-                                            Text(
-                                                text = "${it.remainingCapacity / it.totalCapacity}%",
-                                                fontSize = 16.sp
-                                            )
-                                        },
-                                        trailingContent = { Text(text = "${it.location.name}") }
-                                    )
-                                }
-                            )
-                        }
                     }
                 }
-            )
-        })
-
+                if (exampleFleet.fleetEquipment.isEmpty()) {
+                    Text(
+                        text = "No Equipment has been added",
+                        fontSize = 24.sp
+                    )
+                } else {
+                    exampleFleet.fleetEquipment.forEach {
+                        Card(
+                            modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp),
+                            content = {
+                                ListItem(
+                                    headlineContent = {
+                                        Text(
+                                            text = "${it.model}",
+                                            fontSize = 20.sp
+                                        )
+                                    },
+                                    supportingContent = {
+                                        Text(
+                                            text = "${it.remainingCapacity / it.totalCapacity}%",
+                                            fontSize = 16.sp
+                                        )
+                                    },
+                                    trailingContent = { Text(text = it.location.name) }
+                                )
+                            }
+                        )
+                    }
+                }
+            }
+        }
         Divider()
-
-        Row(content = {
+        // List of Fleet Jobs
+        Row {
             Card(
                 onClick = {/*Do nothing*/ },
-                shape = MaterialTheme.shapes.medium,
-                content = {
-                    Row(
-                        content = {
-                            Text(text = "Jobs", fontSize = 24.sp, modifier = Modifier.absolutePadding(10.dp,0.dp,0.dp,0.dp))
-                        }
+                shape = MaterialTheme.shapes.medium
+            ) {
+                Row(modifier = Modifier.fillMaxWidth()) {
+                    Text(
+                        text = "Jobs",
+                        fontSize = 24.sp,
+                        modifier = Modifier.absolutePadding(10.dp, 0.dp, 0.dp, 0.dp)
                     )
-                    if (exampleFleet.jobs.isEmpty()) {
-                        Text(
-                            text = "No Jobs have been completed",
-                            fontSize = 24.sp
+                    IconButton(onClick = { /*TODO*/ }) {
+                        Icon(
+                            imageVector = ImageVector.vectorResource(id = android.R.drawable.ic_menu_add),
+                            contentDescription = "Add Equipment"
                         )
-                    } else {
-                        exampleFleet.jobs.forEach { job ->
-                            val isCompleted = remember { mutableStateOf(job.completed) }
-                            Card(
-                                modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp),
-                                content = {
-                                    ListItem(
-                                        headlineText = {
-                                            Text(
-                                                text = "${job.jobName}",
-                                                fontSize = 20.sp
-                                            )
-                                        },
-                                        supportingText = {
-                                            Text(
-                                                text = "${job.location.name}",
-                                                fontSize = 16.sp
-                                            )
-                                        },
-                                        trailingContent = {
-                                            Checkbox(checked = isCompleted.value,
-                                                onCheckedChange = {
-                                                    isCompleted.value = it
-                                                    job.completed = it
-                                                }
-                                            )
-                                        }
-                                    )
-                                }
-                            )
-                        }
                     }
                 }
-            )
-        })
-
-        Row(content = {
-            Card(
-                onClick = {/*Do nothing*/ },
-                shape = MaterialTheme.shapes.medium,
-                content = {
-                    Row(
-                        content = {
-                            Text(text = "Jobs", fontSize = 24.sp, modifier = Modifier.absolutePadding(10.dp,0.dp,0.dp,0.dp))
-                        }
+                if (exampleFleet.jobs.isEmpty()) {
+                    Text(
+                        text = "No Jobs have been completed",
+                        fontSize = 24.sp
                     )
-                    if (exampleFleet.jobs.isEmpty()) {
-                        Text(
-                            text = "No Jobs have been completed",
-                            fontSize = 24.sp
+                } else {
+                    exampleFleet.jobs.forEach { job ->
+                        val isCompleted = remember { mutableStateOf(job.completed) }
+                        Card(
+                            modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp),
+                            content = {
+                                ListItem(
+                                    headlineContent = {
+                                        Text(
+                                            text = job.jobName,
+                                            fontSize = 20.sp
+                                        )
+                                    },
+                                    supportingContent = {
+                                        Text(
+                                            text = job.location.name,
+                                            fontSize = 16.sp
+                                        )
+                                    },
+                                    trailingContent = {
+                                        Checkbox(checked = isCompleted.value,
+                                            onCheckedChange = {
+                                                isCompleted.value = it
+                                                job.completed = it
+                                            }
+                                        )
+                                    }
+                                )
+                            }
                         )
-                    } else {
-                        exampleFleet.jobs.forEach { job ->
-                            val isCompleted = remember { mutableStateOf(job.completed) }
-                            Card(
-                                modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp),
-                                content = {
-                                    ListItem(
-                                        headlineText = {
-                                            Text(
-                                                text = "${job.jobName}",
-                                                fontSize = 20.sp
-                                            )
-                                        },
-                                        supportingText = {
-                                            Text(
-                                                text = "${job.location.name}",
-                                                fontSize = 16.sp
-                                            )
-                                        },
-                                        trailingContent = {
-                                            Checkbox(checked = isCompleted.value,
-                                                onCheckedChange = {
-                                                    isCompleted.value = it
-                                                    job.completed = it
-                                                }
-                                            )
-                                        }
-                                    )
-                                }
-                            )
-                        }
                     }
                 }
-            )
-        })
-    })
+            }
+        }
+    }
 
 
 
