@@ -24,6 +24,12 @@ import com.example.teamsklent_electricvehicles_2023.models.*
 fun FleetManagement() {
     val openRemoveUser = remember { mutableStateOf(false) } // Is the dialog open
 
+    var jobName = remember { mutableStateOf("") }
+    var lat = remember { mutableStateOf(0.0) }
+    var lon = remember { mutableStateOf(0.0) }
+
+
+
     /*TODO add tabs for overview, jobs,and people */
 
 
@@ -91,13 +97,13 @@ fun FleetManagement() {
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
                             ListItem(
-                                headlineText = {
+                                headlineContent = {
                                     Text(
                                         text = "${it.model}",
                                         fontSize = 20.sp
                                     )
                                 },
-                                supportingText = {
+                                supportingContent = {
                                     Text(
                                         text = "${it.remainingCapacity / it.totalCapacity}%",
                                         fontSize = 16.sp
@@ -147,13 +153,13 @@ fun FleetManagement() {
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
                             ListItem(
-                                headlineText = {
+                                headlineContent = {
                                     Text(
                                         text = job.jobName,
                                         fontSize = 20.sp
                                     )
                                 },
-                                supportingText = {
+                                supportingContent = {
                                     Text(
                                         text = job.location.name,
                                         fontSize = 16.sp
@@ -195,4 +201,8 @@ fun FleetManagement() {
 //            }
 //        )
 //    }
+}
+
+fun newJob(){
+
 }
