@@ -1,24 +1,22 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.absolutePadding
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.teamsklent_electricvehicles_2023.R
 import com.example.teamsklent_electricvehicles_2023.models.*
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Preview
 @Composable
 fun Employee() {
@@ -47,39 +45,38 @@ fun Employee() {
     exampleFleet.jobs.add(job1)
 
 
-    val sortMenu = remember { mutableStateOf(false) }
+    val changeMember = remember { mutableStateOf(false) }
 
     var employeesToShow: ArrayList<User> = exampleFleet.getEmployees()
+
+    val exampleUser = User("example1234", "example", "user", "example@user.com")
+
+    var employeeToEdit = remember { mutableStateOf(exampleUser)}
+
+
+    var exampleFleetR = remember { mutableStateOf(exampleFleet) }
 
     Column {
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = "Employees",
                 fontSize = 24.sp,
-                modifier = Modifier.absolutePadding(10.dp, 0.dp, 0.dp, 0.dp).align(Alignment.CenterVertically)
-            )
-            IconButton(
-                onClick = { sortMenu.value = true },
-                modifier = Modifier.absolutePadding(0.dp, 0.dp, 10.dp, 0.dp).align(Alignment.CenterVertically),
-                content = {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.ic_baseline_sort_24),
-                        contentDescription = "sort"
-                    )
-                }
+                modifier = Modifier
+                    .absolutePadding(10.dp, 0.dp, 0.dp, 0.dp)
+                    .align(Alignment.CenterVertically)
             )
         }
         Row {
             if (employeesToShow.isEmpty()) {
                 Text(
-                    text = "No Jobs have been completed",
+                    text = "No employees have been added",
                     fontSize = 24.sp
                 )
             } else {
                 Column {
                     employeesToShow.forEach { empl ->
                         ListItem(
-                            headlineContent = {
+                            headlineText = {
                                 Text(
                                     text = "${empl.fName} ${empl.lName}",
                                     fontSize = 20.sp
@@ -90,7 +87,14 @@ fun Employee() {
                                     text = "${exampleFleet.getRole(empl)}",
                                     fontSize = 20.sp
                                 )
-                            }
+                            },
+                            modifier = Modifier.clickable(
+                                enabled = true,
+                                onClick = {
+                                    employeeToEdit.value = empl
+                                    changeMember.value = true
+                                }
+                            )
                         )
                     }
                 }
@@ -98,27 +102,88 @@ fun Employee() {
         }
     }
 
-    // The sort menu
-   if(sortMenu.value){
-       DropdownMenu(
-           expanded = sortMenu.value,
-           onDismissRequest = { sortMenu.value = false }
-       ) {
-           DropdownMenuItem(
-               text = { Text("All") },
-               onClick = { employeesToShow = exampleFleet.getEmployees() },
-           )
-           DropdownMenuItem(
-               text = { Text("Managers") },
-               onClick = { employeesToShow = exampleFleet.managers() },
-           )
-           Divider()
-           DropdownMenuItem(
-               text = { Text("Members") },
-               onClick = { employeesToShow = exampleFleet.members() },
-           )
-       }
-   }
+    if (changeMember.value) {
+        var role = remember { mutableStateOf(FleetRoles.Member)}
+        role.value = exampleFleetR.value.getRole(employeeToEdit.value)!!
+        AlertDialog(
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer, //
+            title = { Text(text = "Employee: ${employeeToEdit.value.fName} ${employeeToEdit.value.lName}") }, //
+            onDismissRequest = { /*TODO*/ }, //
+            text = {
+                Card(
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.tertiaryContainer,)
+                ) {
+                    Column() {
+                        Row() {
+                            Text(text = "Username: ${employeeToEdit.value.userName}", fontSize = 20.sp)
+                        }
+                        Row() {
+                            Text(text = "Email: ${employeeToEdit.value.email}", fontSize = 20.sp)
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = "Owner", fontSize = 16.sp)
+                            exampleFleetR.value.getRole(employeeToEdit.value)?.let {
+                                RadioButton(
+                                    selected = it.equals(FleetRoles.Owner),
+                                    onClick = { role.value = FleetRoles.Owner },
+                                    modifier = Modifier.semantics { contentDescription = "Localized Description" },
+                                    enabled = false
+                                )
+                            }
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = "Manager", fontSize = 16.sp)
+                            exampleFleetR.value.getRole(employeeToEdit.value)?.let {
+                                RadioButton(
+                                    selected = it.equals(FleetRoles.Manager),
+                                    onClick = {
+                                        exampleFleet.setEmployee(employeeToEdit.value, FleetRoles.Manager)
+                                        exampleFleetR.value = exampleFleet
+                                        employeeToEdit.value = exampleFleetR.value.getEmployee(employeeToEdit.value.userName)
+                                        role.value = FleetRoles.Manager
+                                    },
+                                    modifier = Modifier.semantics { contentDescription = "Localized Description" },
+                                    enabled = true
+                                )
+                            }
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text(text = "Member", fontSize = 16.sp)
+                            exampleFleetR.value.getRole(employeeToEdit.value)?.let {
+                                RadioButton(
+                                    selected = it.equals(FleetRoles.Member),
+                                    onClick = {
+                                        exampleFleet.setEmployee(employeeToEdit.value, FleetRoles.Member)
+                                        exampleFleetR.value = exampleFleet
+                                        employeeToEdit.value = exampleFleetR.value.getEmployee(employeeToEdit.value.userName)
+                                        role.value = FleetRoles.Member
+                                    },
+                                    modifier = Modifier.semantics { contentDescription = "Localized Description" },
+                                    enabled = true
+                                )
+                            }
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        changeMember.value = false
+                    }
+                ) { Text(text = "Done") }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = {
+                        changeMember.value = false
+                    }
+                ) { Text(text = "Cancel") }
+            }
+        )
+    }
+}
 
+fun editUser(){
 
 }

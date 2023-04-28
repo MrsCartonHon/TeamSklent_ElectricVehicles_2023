@@ -1,8 +1,8 @@
 package com.example.teamsklent_electricvehicles_2023
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Settings
 import com.example.teamsklent_electricvehicles_2023.models.BarItem
 
 /**
@@ -24,8 +24,8 @@ object NavBarItems {
         ),
         BarItem(
             title = "Settings",
-            icon = Icons.Default.Face,
-            iconSelected = Icons.Filled.Face,
+            icon = Icons.Default.Settings,
+            iconSelected = Icons.Filled.Settings,
             route = "Settings"
         )
     )

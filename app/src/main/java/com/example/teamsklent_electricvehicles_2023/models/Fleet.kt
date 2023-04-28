@@ -58,6 +58,14 @@ class Fleet{
         this.locations = locations
     }
 
+    fun setEmployee(empl: User, newRoles: FleetRoles){
+        if(newRoles == FleetRoles.Manager){
+            addManager(empl)
+        }else{
+            addMember(empl)
+        }
+    }
+
     /**
      * @return All employees owner, managers, members
      */
@@ -67,6 +75,21 @@ class Fleet{
         employeeList.addAll(members)
         employeeList.add(owner)
         return employeeList
+    }
+
+    /**
+     * @param userName the username of the [User]
+     * @return the employee in the Fleet by the username
+     */
+    fun getEmployee(userName: String): User {
+        val employeeList = getEmployees()
+        var toReturn = User("example1234", "example", "user", "example@user.com")
+        employeeList.forEach(){empl ->
+            if(empl.userName == userName){
+                toReturn = empl
+            }
+        }
+        return toReturn
     }
 
     /**

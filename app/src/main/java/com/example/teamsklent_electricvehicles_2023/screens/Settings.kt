@@ -17,37 +17,38 @@ import com.example.teamsklent_electricvehicles_2023.R
 
 @Preview
 @Composable
-fun Settings(){
-    Column{
-        Row{
+fun Settings() {
+    Column {
+        Row {
             IconButton(
-                onClick = {/*TODO*/},
-//                onClick = { navController.navigate(NavRoutes.Account.route) },
-                content = {
-                    Icon(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.account_edit),
-                        contentDescription = "Edit Account"
-                    )
-                }
-            )
+                onClick = {/*TODO*/ }
+            ) {
+                Icon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.account_edit),
+                    contentDescription = "Edit Account"
+                )
+            }
         }
         Row {
             Card(
                 shape = MaterialTheme.shapes.small
-                ){
+            ) {
                 Text(
                     text = "Fleets",
                     modifier = Modifier.absolutePadding(10.dp, 0.dp, 0.dp, 0.dp),
                     fontSize = 20.sp
                 )
-                Row(
-                    content = {
-                    Text(text = "Commercial Mode", modifier = Modifier.align(Alignment.CenterVertically))
+                Row {
+                    Text(
+                        text = "Commercial Mode",
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    )
                     RadioButton(
                         selected = false,
                         modifier = Modifier.align(Alignment.CenterVertically),
-                        onClick = { /*TODO Turn on commercial mode*/ })
-                })
+                        onClick = { /*TODO Turn on commercial mode*/ }
+                    )
+                }
             }
         }
 
