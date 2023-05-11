@@ -54,20 +54,9 @@ fun NewFleet(){
                 },
                 modifier = Modifier.padding(horizontal = 100.dp)
             )
-
-
-
             Button(
                 onClick = {
-//                    Log.i("firebase"," ${database.child("fleets").get()} exists")
 //
-//                    database.child("fleets").child(name.toString()).get().addOnSuccessListener {
-//                        Log.i("firebase", "Got value ${it.value}")
-//                    }.addOnFailureListener{
-//                        Log.e("firebase", "Error getting data", it)
-//                        val newFleet = Fleet(name.toString(),DominicUser.owner)
-//                        //database.child("fleets").child(name.toString()).setValue(Gson().toJson(this))
-//                    }
                 },
                 modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
                 Text(text = "Create Company")
@@ -98,7 +87,9 @@ fun NewFleet(){
                     Text("Close")
                 }
             },
-            confirmButton = {}
+            confirmButton = {
+
+            }
         )
     }
 }

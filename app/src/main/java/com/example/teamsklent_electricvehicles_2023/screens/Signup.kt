@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
+import com.example.teamsklent_electricvehicles_2023.models.User
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDBlack
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDYellow
 import com.google.firebase.auth.ktx.auth
@@ -31,7 +32,10 @@ fun register(name : String, email : String, password : String, navController: Na
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Signup(navController: NavHostController) {
-    var name by remember { mutableStateOf(TextFieldValue("")) }
+
+    var fname by remember { mutableStateOf(TextFieldValue("")) }
+    var lname by remember { mutableStateOf(TextFieldValue("")) }
+    var userName by remember { mutableStateOf(TextFieldValue("")) }
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var passwordConfirm by remember { mutableStateOf(TextFieldValue("")) }
@@ -55,15 +59,31 @@ fun Signup(navController: NavHostController) {
                 textAlign = TextAlign.Center
             )
 
-
             OutlinedTextField(
-                value = name,
-                label = { Text(text = "Name") },
+                value = fname,
+                label = { Text(text = "First Name") },
                 onValueChange = {
-                    name = it
+                    fname = it
                 },
                 modifier = Modifier.padding(horizontal = 100.dp)
             )
+            OutlinedTextField(
+                value = lname,
+                label = { Text(text = "Last Name") },
+                onValueChange = {
+                    lname = it
+                },
+                modifier = Modifier.padding(horizontal = 100.dp)
+            )
+            OutlinedTextField(
+                value = userName,
+                label = { Text(text = "Username") },
+                onValueChange = {
+                    userName = it
+                },
+                modifier = Modifier.padding(horizontal = 100.dp)
+            )
+
             OutlinedTextField(
                 value = email,
                 label = { Text(text = "Email") },
@@ -92,7 +112,7 @@ fun Signup(navController: NavHostController) {
             Button(
                 onClick = {
                     if (password.text == passwordConfirm.text) {
-                        register(name.text, email.text, password.text, navController)
+                        val newUser: User = User(userName.text,fname.text,lname.text,email.text)
                     } else {
                         // passwords don't match display error
                     }

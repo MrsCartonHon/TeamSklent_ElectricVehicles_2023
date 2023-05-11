@@ -52,8 +52,8 @@ fun Home(navController: NavHostController, ) {
             exampleFleet.fleetEquipment.forEach{ equip ->
                if(exampleFleet.fleetEquipment.isEmpty().not()){
                    ListItem(
-                       headlineText = {Text("${equip.name}", fontSize = 20.sp)},
-                       supportingText = { Text(text = "${equip.model}", modifier = Modifier.size(10.dp))}
+                       headlineContent = {Text("${equip.name}", fontSize = 20.sp)},
+                       supportingContent = { Text(text = "${equip.model}", modifier = Modifier.size(10.dp))}
 
                    )
                }else{

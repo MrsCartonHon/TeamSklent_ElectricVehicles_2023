@@ -97,6 +97,10 @@ fun Login(navController: NavHostController) {
                 onClick = { navController.navigate(NavRoutes.Signup.route) },
                 content = { Text(text = "Don't have an account? Sign Up!")}
             )
+            TextButton(
+                onClick = {  },
+                content = { Text(text = "Forgot Password") }
+            )
         }
     }
 }

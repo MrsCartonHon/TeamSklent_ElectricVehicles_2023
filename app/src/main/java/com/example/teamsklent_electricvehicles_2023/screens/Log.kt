@@ -32,10 +32,10 @@ fun showJobs(jobs: List<Job>){
                     tint = JDBlack
                 )
             },
-            headlineText = {
+            headlineContent = {
                Text(job.jobName)
             },
-            supportingText = {
+            supportingContent = {
                 Text("${(job.employees).size}")
             },
             trailingContent = {
