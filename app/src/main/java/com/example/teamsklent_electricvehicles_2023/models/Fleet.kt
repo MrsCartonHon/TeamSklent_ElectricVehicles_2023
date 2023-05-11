@@ -2,22 +2,18 @@ package com.example.teamsklent_electricvehicles_2023.models
 
 import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class Fleet{
     var name: String // name of the company
-    @JsonBackReference
-    var owner: User // identifier of owner
-    @JsonManagedReference
-    var managers: ArrayList<User> // managers of the fleet
-    @JsonManagedReference
-    var members: ArrayList<User>  // employees within the fleet aside from the owner and managers
-    @JsonManagedReference
-    var jobs: ArrayList<Job>  // The jobs of the fleet
-    @JsonManagedReference
-    var fleetEquipment: ArrayList<Equipment>  // The Equipment owned by the fleet
-    @JsonManagedReference
-    var locations: ArrayList<Location> // The Saved locations of the Fleet
+    var owner: UUID // identifier of owner
+    var managers: List<UUID> // managers of the fleet
+    var members: List<User>  // employees within the fleet aside from the owner and managers
+    var jobs: List<Job>  // The jobs of the fleet
+    var fleetEquipment: List<Equipment>  // The Equipment owned by the fleet
+    var locations: List<Location> // The Saved locations of the Fleet
 //    @JsonManagedReference
 //    lateinit var permissions: FleetPermissions
 
@@ -27,7 +23,7 @@ class Fleet{
      * @param name the name of the new Fleet
      * @param owner [User] that will be the owner of the new fleet
      */
-    constructor(name: String, owner: User){
+    constructor(name: String, owner: UUID) {
         this.name = name
         this.owner = owner
         managers = ArrayList() // initializes managers
