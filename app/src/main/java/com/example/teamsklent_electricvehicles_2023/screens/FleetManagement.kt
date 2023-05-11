@@ -56,6 +56,8 @@ fun FleetManagement() {
     exampleFleet.fleetEquipment.add(equip1)
     exampleFleet.fleetEquipment.add(equip2)
     exampleFleet.jobs.add(job1)
+
+
     Column {
 
         // List of Fleet Equipment
@@ -97,13 +99,13 @@ fun FleetManagement() {
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
                             ListItem(
-                                headlineContent = {
+                                headlineText = {
                                     Text(
                                         text = "${it.model}",
                                         fontSize = 20.sp
                                     )
                                 },
-                                supportingContent = {
+                                supportingText = {
                                     Text(
                                         text = "${it.remainingCapacity / it.totalCapacity}%",
                                         fontSize = 16.sp
@@ -153,13 +155,13 @@ fun FleetManagement() {
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
                             ListItem(
-                                headlineContent = {
+                                headlineText = {
                                     Text(
                                         text = job.jobName,
                                         fontSize = 20.sp
                                     )
                                 },
-                                supportingContent = {
+                                supportingText = {
                                     Text(
                                         text = job.location.name,
                                         fontSize = 16.sp

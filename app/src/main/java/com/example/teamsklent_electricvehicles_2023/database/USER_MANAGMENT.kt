@@ -1,8 +1,31 @@
 package com.example.teamsklent_electricvehicles_2023.database
 
-import com.google.firebase.firestore.FirebaseFirestore
+import com.example.teamsklent_electricvehicles_2023.models.User
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
-class USER_MANAGMENT(val db : FirebaseFirestore) {
-    //DB should be https://console.firebase.google.com/u/0/project/jdconnect-45f8d/database/jdconnect-45f8d-default-rtdb/data/~2F
+class USER_MANAGMENT() {
+    private lateinit var database: DatabaseReference
+    init {
+        database = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com")
+    }
+    val mapper = jacksonObjectMapper()
 
+    fun writeUser(user: User){
+        database.child("users").child(user.userName).setValue(mapper.writeValueAsString(user))
+            .addOnSuccessListener {
+                // Write was successful!
+                return@addOnSuccessListener
+            }
+            .addOnFailureListener {
+                // Write failed
+                return@addOnFailureListener
+            }
+    }
+
+    fun getUser(user: User){
+//        return mapper.writeValue(database.child(user.userName).get())
+    }
 }

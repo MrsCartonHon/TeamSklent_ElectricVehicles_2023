@@ -76,7 +76,7 @@ fun Employee() {
                 Column {
                     employeesToShow.forEach { empl ->
                         ListItem(
-                            headlineContent = {
+                            headlineText = {
                                 Text(
                                     text = "${empl.fName} ${empl.lName}",
                                     fontSize = 20.sp

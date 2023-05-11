@@ -5,6 +5,7 @@ package com.example.teamsklent_electricvehicles_2023
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
@@ -14,6 +15,7 @@ import androidx.compose.runtime.getValue
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.*
+import com.example.teamsklent_electricvehicles_2023.database.FLEET_MANAGMENT
 import com.example.teamsklent_electricvehicles_2023.models.*
 import com.example.teamsklent_electricvehicles_2023.screens.*
 import com.example.teamsklent_electricvehicles_2023.ui.theme.*
@@ -46,6 +48,36 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(auth: FirebaseAuth?) {
     val navController = rememberNavController()
+
+    val nirmal = User("nirmal05", "Nirmal", "Alla", "nirmal.alla@gmail.com")
+    val jackson = User("jackson05", "Jackson", "Tagtmeier", "jakson@gmail.com")
+    val dominic = User("dominic05", "Dominic", "Halbur", "dominic.halbur@outlook.com")
+    val exampleFleet = Fleet("Fake example fleet", dominic)
+    val bhs = Location(exampleFleet, "Bettendorf High school", 41.5527552, -90.4718601)
+    val jdh = Location(exampleFleet, "JD World Headquarters", 41.476482, -90.42467)
+    val equip1 = Equipment(
+        exampleFleet, "equip1", EquipmentModel.EXC350, exampleFleet.members, bhs,
+        System.currentTimeMillis().toDouble(), 100.0, 0.0
+    )
+    val equip2 = Equipment(
+        exampleFleet, "equip2", EquipmentModel.EXC500, exampleFleet.members, bhs,
+        System.currentTimeMillis().toDouble(), 100.0, 0.0
+    )
+
+    val job1 = Job(exampleFleet, "BHS Courtyard", bhs, exampleFleet.members, false)
+    exampleFleet.addMember(nirmal)
+    exampleFleet.addManager(jackson)
+    exampleFleet.locations.add(bhs)
+    exampleFleet.locations.add(jdh)
+    exampleFleet.fleetEquipment.add(equip1)
+    exampleFleet.fleetEquipment.add(equip2)
+    exampleFleet.jobs.add(job1)
+
+    Log.e("FIREBASE", FLEET_MANAGMENT().writeFleet(exampleFleet).toString())
+
+
+
+
     Scaffold(
         //topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
         content = { NavigationHost(navController = navController) },
@@ -54,17 +86,6 @@ fun MainScreen(auth: FirebaseAuth?) {
                 BottomNavigationBar(navController = navController)
             }
         }
-    )
-}
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@ExperimentalMaterial3Api
-@Composable
-fun LoginScreen(){
-    val navController = rememberNavController()
-    Scaffold(
-//        topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
-        content = { NavigationHost(navController = navController) },
-//        bottomBar = {BottomNavigationBar(navController = navController) }
     )
 }
 
