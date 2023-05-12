@@ -18,10 +18,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.TextField
 import androidx.compose.ui.platform.LocalContext
+import com.example.teamsklent_electricvehicles_2023.*
 import com.example.teamsklent_electricvehicles_2023.R
-import com.example.teamsklent_electricvehicles_2023.Tractor
-import com.example.teamsklent_electricvehicles_2023.TractorType
-import com.example.teamsklent_electricvehicles_2023.TractorTypes
 import com.example.teamsklent_electricvehicles_2023.ui.theme.TeamSklent_ElectricVehicles_2023Theme
 
 @Composable
@@ -31,6 +29,6 @@ fun Location() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ){
-        InputBox("Enter Your Longitude")
+
     }
 }

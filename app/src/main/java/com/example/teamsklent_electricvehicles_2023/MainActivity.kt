@@ -20,10 +20,12 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.teamsklent_electricvehicles_2023.screens.Dropdown
 import com.example.teamsklent_electricvehicles_2023.ui.theme.TeamSklent_ElectricVehicles_2023Theme
 import com.example.teamsklent_electricvehicles_2023.screens.Login
 import com.example.teamsklent_electricvehicles_2023.screens.requestPermissions
-//import com.example.teamsklent_electricvehicles_2023.screens.Pair
+import com.example.teamsklent_electricvehicles_2023.screens.Pair
+import com.example.teamsklent_electricvehicles_2023.screens.CalendarDisplay
 
 
 class MainActivity : ComponentActivity() {
@@ -47,7 +49,7 @@ class MainActivity : ComponentActivity() {
                             contentDescription = stringResource(id = R.string.deere_logo),
                             modifier = Modifier.padding(bottom = 0.dp)
                         )
-                        val permissions = requestPermissions()
+                        CalendarDisplay()
                     }
                 }
             }
