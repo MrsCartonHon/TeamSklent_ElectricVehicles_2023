@@ -9,7 +9,7 @@ class Job (
     var location: Location, // location of job
     var employees: ArrayList<User> = ArrayList(), // list of employees tasked with the job
     var completed: Boolean = false
-    ){
+){
     fun changeCompleted(){
         completed = !completed
     }

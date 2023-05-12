@@ -99,13 +99,13 @@ fun FleetManagement() {
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
                             ListItem(
-                                headlineText = {
+                                headlineContent = {
                                     Text(
                                         text = "${it.model}",
                                         fontSize = 20.sp
                                     )
                                 },
-                                supportingText = {
+                                supportingContent = {
                                     Text(
                                         text = "${it.remainingCapacity / it.totalCapacity}%",
                                         fontSize = 16.sp

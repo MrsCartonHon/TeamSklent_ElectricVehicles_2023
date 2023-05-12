@@ -1,14 +1,11 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Face
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.models.Job
-import com.example.teamsklent_electricvehicles_2023.ui.theme.JDBlack
 
 @Composable
 fun Logs(navController: NavHostController) {
@@ -23,31 +20,31 @@ fun Logs(navController: NavHostController) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun showJobs(jobs: List<Job>){
-    Column {
-        for (job in jobs) ListItem(
-            leadingContent = {
-                Icon(
-                    imageVector = Icons.Default.Face,
-                    contentDescription = job.jobName,
-                    tint = JDBlack
-                )
-            },
-            headlineContent = {
-               Text(job.jobName)
-            },
-            supportingContent = {
-                Text("${(job.employees).size}")
-            },
-            trailingContent = {
-                val checked = job.completed
-                Checkbox(
-                    checked = checked,
-                    enabled = true,
-                    onCheckedChange = {
-                        job.completed = job.completed.not()
-                    }
-                )
-            }
-        )
-    }
+//    Column {
+//        for (itJob in jobs) ListItem(
+//            leadingContent = {
+//                Icon(
+//                    imageVector = Icons.Default.Face,
+//                    contentDescription = itJob.jobName,
+//                    tint = JDBlack
+//                )
+//            },
+//            headlineContent = {
+//                Text(itJob.jobName)
+//            },
+//            supportingContent = {
+//                Text("${(itJob.employees).size}")
+//            },
+//            trailingContent = {
+//                val checked = itJob.completed
+//                Checkbox(
+//                    checked = checked,
+//                    enabled = true,
+//                    onCheckedChange = {
+//                        itJob.completed = itJob.completed.not()
+//                    }
+//                )
+//            }
+//        )
+//    }
 }

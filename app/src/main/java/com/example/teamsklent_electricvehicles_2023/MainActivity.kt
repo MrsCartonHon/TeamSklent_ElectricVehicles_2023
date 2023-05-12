@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
-       // val currentUser = auth.currentUser
+        // val currentUser = auth.currentUser
 //        updateUI(currentUser)
         setContent {
             TeamSklent_ElectricVehicles_2023Theme {
@@ -157,5 +157,4 @@ fun BottomNavigationBar(navController: NavHostController) {
         }
     }
 }
-
 
