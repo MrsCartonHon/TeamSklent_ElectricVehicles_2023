@@ -4,6 +4,7 @@ package com.example.teamsklent_electricvehicles_2023.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.ListItem
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -99,13 +100,13 @@ fun FleetManagement() {
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
                             /*ListItem(
-                                headlineContent = {
+                                headlineText = {
                                     Text(
                                         text = "${it.model}",
                                         fontSize = 20.sp
                                     )
                                 },
-                                supportingContent = {
+                                supportingText = {
                                     Text(
                                         text = "${it.remainingCapacity / it.totalCapacity}%",
                                         fontSize = 16.sp

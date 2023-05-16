@@ -1,9 +1,6 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -11,15 +8,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.teamsklent_electricvehicles_2023.database.FLEET_MANAGMENT
 import com.example.teamsklent_electricvehicles_2023.models.User
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Preview
 @Composable
 fun NewFleet(){
-
-    //var database: DatabaseReference = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com/")
 
 
     var name by remember { mutableStateOf(TextFieldValue("")) }
@@ -35,31 +33,43 @@ fun NewFleet(){
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            modifier = Modifier.fillMaxWidth()
         ) {
 
-            Text(
-                text = "Create Your Account",
-                style = TextStyle(
-                    fontSize = 24.sp
-                ),
-                modifier = Modifier.padding(vertical = 10.dp),
-                textAlign = TextAlign.Center,
-            )
-            OutlinedTextField(
-                label = { Text(text = "Company Name") },
-                value = name,
-                onValueChange = {
-                    name = it
-                },
-                modifier = Modifier.padding(horizontal = 100.dp)
-            )
-            Button(
-                onClick = {
-//
-                },
-                modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
-                Text(text = "Create Company")
+            Row{
+                Text(
+                    text = "Create Your Fleet",
+                    style = TextStyle(
+                        fontSize = 24.sp
+                    ),
+                    modifier = Modifier.padding(vertical = 10.dp),
+                    textAlign = TextAlign.Center,
+                )
+            }
+            Row{
+                OutlinedTextField(
+                    label = { Text(text = "Company Name") },
+                    value = name,
+                    onValueChange = {
+                        name = it
+                        if(FLEET_MANAGMENT().isNameTaken(name.text)){
+                            /*TODO alert the name is already taken*/
+
+                        }
+                    },
+                    modifier = Modifier.padding(horizontal = 100.dp)
+                )
+            }
+            Row{
+                Button(
+                    onClick = {
+                        /* TODO alert the name is already taken */
+                    },
+                    modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp),
+
+                    ){
+                    Text(text = "Create Fleet")
+                }
             }
 
         }

@@ -33,6 +33,10 @@ private val LightColorScheme = lightColorScheme(
     */
 )
 
+//@Composable
+//val SubmitButtonScheme = ButtonDefaults.buttonColors(containerColor = JDGreen1)
+
+
 @Composable
 fun TeamSklent_ElectricVehicles_2023Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),

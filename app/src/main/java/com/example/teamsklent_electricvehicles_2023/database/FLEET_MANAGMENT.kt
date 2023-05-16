@@ -1,30 +1,32 @@
 package com.example.teamsklent_electricvehicles_2023.database
 
 import com.example.teamsklent_electricvehicles_2023.models.Fleet
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
 
 //DB should be https://console.firebase.google.com/u/0/project/jdconnect-45f8d/database/jdconnect-45f8d-default-rtdb/data/~2F
 class FLEET_MANAGMENT() {
-    private lateinit var database: DatabaseReference
-    init {
-        database = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com")
+    private var database = Firebase.firestore.collection("fleets")
+
+    fun getFleet(name:String){
+        database.document(name).get()
+            .addOnSuccessListener { documentSnapshot ->
+                val fleet = documentSnapshot.toObject<Fleet>()
+
+            }
+
     }
-
-    val mapper = jacksonObjectMapper()
-
-    fun writeFleet(fleet: Fleet){
-        database.child("fleets").child(fleet.name).setValue(mapper.writeValueAsString(fleet))
+    fun isNameTaken(name:String): Boolean {
+        var returnData: Boolean = false
+        var addOnFailureListener = database.document(name).get()
             .addOnSuccessListener {
-                // Write was successful!
-                return@addOnSuccessListener
+                returnData = true
             }
             .addOnFailureListener {
-                // Write failed
-                return@addOnFailureListener
+                returnData = false
             }
+        return returnData
     }
 }

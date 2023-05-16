@@ -1,7 +1,10 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
@@ -24,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
+import com.example.teamsklent_electricvehicles_2023.ui.theme.JDGreen1
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -98,7 +102,9 @@ fun Login(navController: NavHostController) {
                         navController.navigate(NavRoutes.Home.route)
                     }
                 },
-                modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp)) {
+                modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp),
+                colors = ButtonDefaults.buttonColors(containerColor = JDGreen1)
+            ) {
                 Text(text = "Login")
             }
             TextButton(

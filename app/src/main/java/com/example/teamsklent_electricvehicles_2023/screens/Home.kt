@@ -1,7 +1,14 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.absolutePadding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddBox
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.models.*
 
@@ -31,27 +38,17 @@ fun Home(navController: NavHostController, ) {
 //    exampleFleet.fleetEquipment.add(equip2)
 //    exampleFleet.jobs.add(job1)
 //
-//    Column {
-//        Card(onClick = { /*TODO*/ }) {
-//            Row(content = {
-//                Text(text = "My Equipment", Modifier.absolutePadding(10.dp, 0.dp, 30.dp, 0.dp))
-//                IconButton(
-//                    onClick = { /*TODO*/ },
-//                    content = {Icons.Default.AddBox}
-//                )
-//            })
-//            exampleFleet.fleetEquipment.forEach{ equip ->
-//               if(exampleFleet.fleetEquipment.isEmpty().not()){
-//                   ListItem(
-//                       headlineContent = {Text("${equip.name}", fontSize = 20.sp)},
-//                       supportingContent = { Text(text = "${equip.model}", modifier = Modifier.size(10.dp))}
-//
-//                   )
-//               }else{
-//                   Text(text = "Add some equipment")
-//               }
-//            }
-//        }
-//    }
+    Column {
+        Card(onClick = { /*TODO*/ }) {
+            Row(content = {
+                Text(text = "My Equipment", Modifier.absolutePadding(10.dp, 0.dp, 30.dp, 0.dp))
+                IconButton(
+                    onClick = { /*TODO*/ },
+                    content = { Icons.Default.AddBox}
+                )
+            })
+            /* TODO add equipment list section */
+        }
+    }
 }
 

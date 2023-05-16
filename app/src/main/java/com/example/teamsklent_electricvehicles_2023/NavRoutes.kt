@@ -11,4 +11,6 @@ sealed class NavRoutes(val route: String) {
     object Settings : NavRoutes("Settings")
     object Employees : NavRoutes("Employees")
     object FleetManagement : NavRoutes("JoinFleet")
+    object NewFleet : NavRoutes("NewFleet")
+    object NewJob : NavRoutes("NewJob")
 }

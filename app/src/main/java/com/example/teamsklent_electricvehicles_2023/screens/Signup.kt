@@ -20,6 +20,7 @@ import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.example.teamsklent_electricvehicles_2023.models.User
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDBlack
+import com.example.teamsklent_electricvehicles_2023.ui.theme.JDGreen1
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDYellow
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -104,7 +105,7 @@ fun Signup(navController: NavHostController) {
                 label = { Text(text = "Email") },
                 onValueChange = {
                     email = it
-                    /*TODO validate email*/
+                    /* TODO validate email and check if its already in use */
                 },
                 modifier = Modifier.padding(horizontal = 100.dp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -123,6 +124,7 @@ fun Signup(navController: NavHostController) {
                 label = { Text(text = "Confirm Password") },
                 onValueChange = {
                     passwordConfirm = it
+                    /* TODO alert if passwords don't match */
                 },
                 modifier = Modifier.padding(horizontal = 100.dp),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
@@ -139,7 +141,7 @@ fun Signup(navController: NavHostController) {
                     }
                 },
                 modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp),
-                colors = ButtonDefaults.buttonColors(containerColor = JDYellow, contentColor = JDBlack)
+                colors = ButtonDefaults.buttonColors(containerColor = JDGreen1, contentColor = JDBlack)
                 ) {
                 Text(text = "Register")
             }
