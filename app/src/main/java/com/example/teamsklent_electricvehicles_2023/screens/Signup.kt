@@ -80,6 +80,7 @@ fun Signup(navController: NavHostController) {
                 label = { Text(text = "Username") },
                 onValueChange = {
                     userName = it
+                    /* TODO Check if username exists*/
                 },
                 modifier = Modifier.padding(horizontal = 100.dp)
             )
@@ -89,6 +90,7 @@ fun Signup(navController: NavHostController) {
                 label = { Text(text = "Email") },
                 onValueChange = {
                     email = it
+                    /*TODO validate email*/
                 },
                 modifier = Modifier.padding(horizontal = 100.dp)
             )

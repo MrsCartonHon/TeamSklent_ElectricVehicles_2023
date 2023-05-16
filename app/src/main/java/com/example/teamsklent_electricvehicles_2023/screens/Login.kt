@@ -22,16 +22,11 @@ import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Login(navController: NavHostController) {
-
-
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
-
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
@@ -41,7 +36,6 @@ fun Login(navController: NavHostController) {
             verticalArrangement = Arrangement.Center
         ) {
             //Image(painter = painterResource(id = R.mipmap.ic_launcher), contentDescription = "JDConnect Logo")
-
             Text(
                 text = "Login To Account",
                 style = TextStyle(
@@ -97,22 +91,15 @@ fun Login(navController: NavHostController) {
                 onClick = { navController.navigate(NavRoutes.Signup.route) },
                 content = { Text(text = "Don't have an account? Sign Up!")}
             )
-            TextButton(
-                onClick = {  },
-                content = { Text(text = "Forgot Password") }
-            )
         }
     }
 }
-
 fun login(email: String, password: String) {
     val localAuth = Firebase.auth
-
     localAuth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 /*TODO return to home page*/
-
             } else {
                 // maybe they don't have an account??
                 /*TODO alert they don't have an account*/
