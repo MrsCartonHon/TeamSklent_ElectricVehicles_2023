@@ -1,7 +1,6 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
 import android.app.DatePickerDialog
-import androidx.compose.runtime.getValue
 import android.os.Bundle
 import android.util.Log
 import android.widget.DatePicker
@@ -12,15 +11,13 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.material3.TextField
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -79,8 +76,38 @@ fun CalendarDisplay(){
 
         // Adding a space of 100dp height
         Spacer(modifier = Modifier.size(100.dp))
-
+        var status by remember {mutableStateOf(false)}
         // Displaying the mDate value in the Text
         Text(text = "Selected Date: ${mDate.value}", fontSize = 30.sp, textAlign = TextAlign.Center)
+        Button(
+            onClick = {
+                status = validator(mDate.value)
+            }
+        ){
+            Text(text="Confirm Date")
+        }
+        Button(
+            onClick = {createEvent(mDate.value)},
+            enabled = status
+        ){
+            Text(text = "Create Event")
+        }
     }
 }
+
+fun createEvent(date: String){
+    val event = object{
+        val month = date.split("/")[0]
+        val day = date.split("/")[1]
+        val year = date.split("/")[2]
+    }
+}
+
+fun validator(date: String): Boolean {
+    if (!date.equals("")){
+        return true
+    }else {
+        return false
+    }
+}
+
