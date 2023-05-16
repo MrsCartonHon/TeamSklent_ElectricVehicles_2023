@@ -79,6 +79,7 @@ fun CalendarDisplay(){
         var status by remember {mutableStateOf(false)}
         // Displaying the mDate value in the Text
         Text(text = "Selected Date: ${mDate.value}", fontSize = 30.sp, textAlign = TextAlign.Center)
+
         Button(
             onClick = {
                 status = validator(mDate.value)
@@ -86,6 +87,7 @@ fun CalendarDisplay(){
         ){
             Text(text="Confirm Date")
         }
+
         Button(
             onClick = {createEvent(mDate.value)},
             enabled = status
