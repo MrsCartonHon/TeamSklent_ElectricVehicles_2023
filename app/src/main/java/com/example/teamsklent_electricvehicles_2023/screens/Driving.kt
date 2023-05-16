@@ -1,5 +1,6 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -7,6 +8,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,7 +32,7 @@ fun Driving(){
 
     val startTime = System.currentTimeMillis().toDouble()
 
-    var upTime = mutableStateOf(ElapsedTime(startTime = startTime))
+    var upTime = remember { mutableStateOf(ElapsedTime(startTime = startTime)) }
 
     val startCapacity: Double = currentEquip.remainingCapacity
 

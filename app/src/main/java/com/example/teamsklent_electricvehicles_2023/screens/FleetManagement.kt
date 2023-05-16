@@ -98,7 +98,7 @@ fun FleetManagement() {
                         Card(
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
-                            ListItem(
+                            /*ListItem(
                                 headlineContent = {
                                     Text(
                                         text = "${it.model}",
@@ -112,7 +112,7 @@ fun FleetManagement() {
                                     )
                                 },
                                 trailingContent = { Text(text = it.location.name) }
-                            )
+                            )*/
                         }
                     }
                 }

@@ -1,11 +1,17 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -29,7 +35,7 @@ fun register(name : String, email : String, password : String, navController: Na
         }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun Signup(navController: NavHostController) {
 
@@ -40,13 +46,21 @@ fun Signup(navController: NavHostController) {
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var passwordConfirm by remember { mutableStateOf(TextFieldValue("")) }
 
+    val keyboardController = LocalSoftwareKeyboardController.current
+
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .pointerInput(Unit) {
+                    detectTapGestures(onTap = {
+                        keyboardController?.hide()
+                    })
+                }
         ) {
             //Image(painter = painterResource(id = R.mipmap.ic_launcher), contentDescription = "JDConnect Logo")
 
@@ -92,7 +106,8 @@ fun Signup(navController: NavHostController) {
                     email = it
                     /*TODO validate email*/
                 },
-                modifier = Modifier.padding(horizontal = 100.dp)
+                modifier = Modifier.padding(horizontal = 100.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
             )
             OutlinedTextField(
                 value = password,
@@ -100,7 +115,8 @@ fun Signup(navController: NavHostController) {
                 onValueChange = {
                     password = it
                 },
-                modifier = Modifier.padding(horizontal = 100.dp)
+                modifier = Modifier.padding(horizontal = 100.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
             OutlinedTextField(
                 value = passwordConfirm,
@@ -108,13 +124,16 @@ fun Signup(navController: NavHostController) {
                 onValueChange = {
                     passwordConfirm = it
                 },
-                modifier = Modifier.padding(horizontal = 100.dp)
+                modifier = Modifier.padding(horizontal = 100.dp),
+                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
             )
 
             Button(
                 onClick = {
                     if (password.text == passwordConfirm.text) {
-                        val newUser: User = User(userName.text,fname.text,lname.text,email.text)
+                        val newUser: User = User(userName.text, fname.text, lname.text, email.text)
+
+
                     } else {
                         // passwords don't match display error
                     }
