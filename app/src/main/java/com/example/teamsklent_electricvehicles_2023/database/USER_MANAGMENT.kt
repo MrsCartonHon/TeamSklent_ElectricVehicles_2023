@@ -1,36 +1,38 @@
 package com.example.teamsklent_electricvehicles_2023.database
 
 import com.example.teamsklent_electricvehicles_2023.models.User
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 
-class USER_MANAGMENT() {
+class USER_MANAGMENT {
 
-    private lateinit var database: DatabaseReference
+    private val database = Firebase.firestore.collection("users")
 
-    init {
-        database = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com")
+    fun getUser(uid:String): User? {
+        var user: User? = null
+        database.document(uid).get()
+            .addOnSuccessListener { documentSnapshot ->
+                user = documentSnapshot.toObject<User>()
+            }
+        return user
     }
-    val mapper = jacksonObjectMapper()
 
     fun writeUser(user: User){
-        database.child("users").child(user.userName).setValue(mapper.writeValueAsString(user))
-            .addOnSuccessListener {
-                // Write was successful!
-                return@addOnSuccessListener
-            }
-            .addOnFailureListener {
-                // Write failed
-                return@addOnFailureListener
-            }
+        if(exists(user.uid)){
+            database.document(user.uid).set(user.toMap(), SetOptions.merge()) // Merges changed data
+        }else{
+            database.document(user.uid).set(user.toMap()) // creates new document
+        }
     }
 
-    fun getUser(user: User): User? {
-        val json = database.child("users").child(user.userName).get().toString()
-        val returnUser: User = mapper.readValue(json)
-        return returnUser
+    fun exists(username:String): Boolean {
+        var returnData = false
+        database.document(username).get()
+            .addOnSuccessListener {
+                returnData = true
+            }
+        return returnData
     }
 }

@@ -7,25 +7,22 @@ import com.google.firebase.ktx.Firebase
 
 
 //DB should be https://console.firebase.google.com/u/0/project/jdconnect-45f8d/database/jdconnect-45f8d-default-rtdb/data/~2F
-class FLEET_MANAGMENT() {
+class FLEET_MANAGMENT {
     private var database = Firebase.firestore.collection("fleets")
 
-    fun getFleet(name:String){
+    fun getFleet(name:String): Fleet? {
+        var fleet: Fleet? = null
         database.document(name).get()
             .addOnSuccessListener { documentSnapshot ->
-                val fleet = documentSnapshot.toObject<Fleet>()
-
+                fleet = documentSnapshot.toObject<Fleet>()
             }
-
+        return fleet
     }
     fun isNameTaken(name:String): Boolean {
-        var returnData: Boolean = false
-        var addOnFailureListener = database.document(name).get()
+        var returnData = false
+        database.document(name).get()
             .addOnSuccessListener {
                 returnData = true
-            }
-            .addOnFailureListener {
-                returnData = false
             }
         return returnData
     }

@@ -1,32 +1,32 @@
 package com.example.teamsklent_electricvehicles_2023.models
 
+import com.example.teamsklent_electricvehicles_2023.database.DATABASE_MANAGMENT
+import com.google.firebase.database.Exclude
 
-class User{
-    var userName: String
-    var fName: String
-    var lName: String
-    var email: String
-    var fleets: ArrayList<String>
 
-    constructor(userName: String, fName: String, lName:String, email:String){
-        this.userName = userName
-        this.fName = fName
-        this.lName = lName
-        this.email = email
-        fleets = ArrayList()
-    }
-    constructor(userName: String, fName: String, lName:String, email:String, fleets: ArrayList<String>){
-        this.userName = userName
-        this.fName = fName
-        this.lName = lName
-        this.email = email
-        this.fleets = fleets
+data class User(
+    var uid: String,
+    var firstName: String,
+    var lastName: String,
+    var email: String,
+    var ownedEquip: ArrayList<DATABASE_MANAGMENT.Equipment>,
+    var ownedFleets: ArrayList<DATABASE_MANAGMENT.Fleet>,
+    var memberFleets: ArrayList<DATABASE_MANAGMENT.Fleet>
+) {
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "uid" to uid,
+            "firstName" to firstName,
+            "lastName" to lastName,
+            "email" to email,
+            "ownedEquip" to ownedEquip,
+            "ownedFleets" to ownedFleets,
+            "memberFleets" to memberFleets
+        )
     }
     @Override
     fun equals(comparedUser: User) :Boolean{
-        return (this.userName == comparedUser.userName)
-    }
-    override fun toString(): String {
-        return userName
+        return (this.uid == comparedUser.uid)
     }
 }

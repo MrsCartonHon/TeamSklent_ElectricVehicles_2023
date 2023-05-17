@@ -49,11 +49,7 @@ fun MainScreen(auth: FirebaseAuth?) {
     Scaffold(
         //topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
         content = { NavigationHost(navController = navController) },
-        bottomBar = {
-            if(auth != null) {
-                BottomNavigationBar(navController = navController)
-            }
-        }
+        bottomBar = { BottomNavigationBar(navController = navController) }
     )
 }
 
@@ -78,6 +74,9 @@ fun NavigationHost(navController: NavHostController) {
         }
         composable(NavRoutes.Signup.route){
             Signup(navController)
+        }
+        composable(NavRoutes.Settings.route){
+            Settings(navController)
         }
     }
 }

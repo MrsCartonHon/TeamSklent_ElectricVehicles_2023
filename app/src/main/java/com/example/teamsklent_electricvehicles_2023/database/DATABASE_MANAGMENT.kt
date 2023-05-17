@@ -18,7 +18,9 @@ class DATABASE_MANAGMENT {
         var name: String = "A cool job name",
         var date: Date,
         var location: Location,
-        var completed: Boolean
+        var notes: String,
+        var completed: Boolean,
+        var createdOn: Date
     ) {
         @Exclude
         fun toMap(): Map<String, Any?> {
@@ -27,7 +29,8 @@ class DATABASE_MANAGMENT {
                 "name" to name,
                 "date" to date,
                 "location" to location,
-                "completed" to completed
+                "completed" to completed,
+                "createdOn" to createdOn
             )
         }
     }
@@ -50,24 +53,22 @@ class DATABASE_MANAGMENT {
     }
 
 
-    /* I Dont think Users need a UUID if they have a unique username */
     data class User(
-//        var id: UUID = UUID.randomUUID()
-        var username: String? = null,
-        var firstName: String? = null,
-        var lastName: String? = null,
-        var email: String? = null,
-        var ownedEquip: ArrayList<Equipment>,
-        var ownedFleets: ArrayList<Fleet>,
-        var memberFleets: ArrayList<Fleet>
+        var uid: String,
+        var firstName: String,
+        var lastName: String,
+        var email: String,
+        var ownedEquip: ArrayList<DATABASE_MANAGMENT.Equipment>,
+        var ownedFleets: ArrayList<DATABASE_MANAGMENT.Fleet>,
+        var memberFleets: ArrayList<DATABASE_MANAGMENT.Fleet>
     ) {
         @Exclude
         fun toMap(): Map<String, Any?> {
             return mapOf(
-//                "id" to id,
-                "username" to username,
+                "username" to uid,
                 "firstName" to firstName,
                 "lastName" to lastName,
+                "email" to email,
                 "ownedEquip" to ownedEquip,
                 "ownedFleets" to ownedFleets,
                 "memberFleets" to memberFleets

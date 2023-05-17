@@ -1,7 +1,11 @@
 package com.example.teamsklent_electricvehicles_2023.screens
 
+import android.util.Log
 import androidx.compose.foundation.gestures.detectTapGestures
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -18,23 +22,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
+import com.example.teamsklent_electricvehicles_2023.database.USER_MANAGMENT
 import com.example.teamsklent_electricvehicles_2023.models.User
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDBlack
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDGreen1
-import com.example.teamsklent_electricvehicles_2023.ui.theme.JDYellow
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-fun register(name : String, email : String, password : String, navController: NavHostController) {
-    val auth = Firebase.auth
 
-    auth.createUserWithEmailAndPassword(email, password)
-        .addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                navController.navigate(NavRoutes.Home.route)
-            }
-        }
-}
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
@@ -42,7 +37,6 @@ fun Signup(navController: NavHostController) {
 
     var fname by remember { mutableStateOf(TextFieldValue("")) }
     var lname by remember { mutableStateOf(TextFieldValue("")) }
-    var userName by remember { mutableStateOf(TextFieldValue("")) }
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
     var passwordConfirm by remember { mutableStateOf(TextFieldValue("")) }
@@ -91,16 +85,6 @@ fun Signup(navController: NavHostController) {
                 modifier = Modifier.padding(horizontal = 100.dp)
             )
             OutlinedTextField(
-                value = userName,
-                label = { Text(text = "Username") },
-                onValueChange = {
-                    userName = it
-                    /* TODO Check if username exists*/
-                },
-                modifier = Modifier.padding(horizontal = 100.dp)
-            )
-
-            OutlinedTextField(
                 value = email,
                 label = { Text(text = "Email") },
                 onValueChange = {
@@ -133,12 +117,11 @@ fun Signup(navController: NavHostController) {
             Button(
                 onClick = {
                     if (password.text == passwordConfirm.text) {
-                        val newUser: User = User(userName.text, fname.text, lname.text, email.text)
-
-
+                        register(fname.text,lname.text,email.text,password.text,navController)
                     } else {
                         // passwords don't match display error
                     }
+
                 },
                 modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = JDGreen1, contentColor = JDBlack)
@@ -147,4 +130,27 @@ fun Signup(navController: NavHostController) {
             }
         }
     }
+}
+fun register(fname: String, lname: String, email : String, password : String, navController: NavHostController) {
+    val auth = Firebase.auth
+
+    auth.createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val user = auth.currentUser?.uid
+                Log.d("uid", user.toString())
+                val newUser: User = User(
+                    user.toString(),
+                    fname,
+                    lname,
+                    email,
+                    ArrayList(),
+                    ArrayList(),
+                    ArrayList()
+                )
+                USER_MANAGMENT().writeUser(newUser)
+                navController.navigate(NavRoutes.Home.route)
+            }
+        }
+
 }

@@ -81,11 +81,11 @@ class Fleet{
      * @param userName the username of the [User]
      * @return the employee in the Fleet by the username
      */
-    fun getEmployee(userName: String): User {
+    fun getEmployee(uid: String): User? {
         val employeeList = getEmployees()
-        var toReturn = User("example1234", "example", "user", "example@user.com")
+        var toReturn: User? = null
         employeeList.forEach(){empl ->
-            if(empl.userName == userName){
+            if(empl.uid == uid){
                 toReturn = empl
             }
         }

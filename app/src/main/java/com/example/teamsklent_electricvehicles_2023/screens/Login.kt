@@ -98,8 +98,8 @@ fun Login(navController: NavHostController) {
             Button(
                 onClick = {
                     if(!email.equals("") && !password.equals("")){
-                        //login(email.text, password.text)
-                        navController.navigate(NavRoutes.Home.route)
+                        login(email.text, password.text, navController)
+
                     }
                 },
                 modifier = Modifier.padding(horizontal = 100.dp, vertical = 50.dp),
@@ -114,12 +114,12 @@ fun Login(navController: NavHostController) {
         }
     }
 }
-fun login(email: String, password: String) {
+fun login(email: String, password: String, navController: NavHostController) {
     val localAuth = Firebase.auth
     localAuth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                /*TODO return to home page*/
+                navController.navigate(NavRoutes.Home.route)
             } else {
                 // maybe they don't have an account??
                 /*TODO alert they don't have an account*/
