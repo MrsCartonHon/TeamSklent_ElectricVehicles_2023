@@ -30,6 +30,7 @@ import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDGreen1
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun Login(navController: NavHostController) {

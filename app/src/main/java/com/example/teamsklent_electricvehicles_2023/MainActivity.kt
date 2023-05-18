@@ -18,6 +18,8 @@ import com.example.teamsklent_electricvehicles_2023.models.*
 import com.example.teamsklent_electricvehicles_2023.screens.*
 import com.example.teamsklent_electricvehicles_2023.ui.theme.*
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : ComponentActivity() {
@@ -46,6 +48,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(auth: FirebaseAuth?) {
     val navController = rememberNavController()
+
     Scaffold(
         //topBar = { TopAppBar(title = { Text("Bottom Navigation Demo") }) },
         content = { NavigationHost(navController = navController) },
@@ -77,6 +80,9 @@ fun NavigationHost(navController: NavHostController) {
         }
         composable(NavRoutes.Settings.route){
             Settings(navController)
+        }
+        composable(NavRoutes.NewJob.route){
+            NewJob(navController)
         }
     }
 }

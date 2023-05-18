@@ -18,22 +18,18 @@ import com.example.teamsklent_electricvehicles_2023.database.FLEET_MANAGMENT
 import com.example.teamsklent_electricvehicles_2023.models.ListItemModel
 import com.google.firebase.auth.FirebaseAuth
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NewJob(navController: NavHostController, auth: FirebaseAuth?, fleetName: String) {
+fun NewJob(navController: NavHostController) {
 
 
     // Data fields
     var jobName by remember { mutableStateOf("") } //Name of the job
     var notes by remember { mutableStateOf("") } //notes about the job
 
+    //val thisFleet = FLEET_MANAGMENT().getFleet("")
 
-
-
-    var thisFleet = FLEET_MANAGMENT().getFleet(fleetName)
-
-
+    /*
     var items by remember {
         mutableStateOf(
             thisFleet!!.members.map { it ->
@@ -44,8 +40,9 @@ fun NewJob(navController: NavHostController, auth: FirebaseAuth?, fleetName: Str
             }
         )
     }
+    */
 
-    var openDialog = remember { mutableStateOf(false) } // Is the dialog open
+    val openDialog = remember { mutableStateOf(false) } // Is the dialog open
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -89,7 +86,7 @@ fun NewJob(navController: NavHostController, auth: FirebaseAuth?, fleetName: Str
                         modifier = Modifier
                             .fillMaxSize()
                     ) {
-                        items(items.size) { i ->
+                        /*items(items.size) { i ->
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -114,7 +111,7 @@ fun NewJob(navController: NavHostController, auth: FirebaseAuth?, fleetName: Str
                                     )
                                 }
                             }
-                        }
+                        }*/
                     }
                 },
                 confirmButton = {

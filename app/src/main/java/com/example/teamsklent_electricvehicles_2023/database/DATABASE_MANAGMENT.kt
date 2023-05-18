@@ -3,14 +3,19 @@ package com.example.teamsklent_electricvehicles_2023.database
 import com.example.teamsklent_electricvehicles_2023.models.EquipmentModel
 import com.example.teamsklent_electricvehicles_2023.models.Location
 import com.example.teamsklent_electricvehicles_2023.models.User
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.ktx.database
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class DATABASE_MANAGMENT {
-    private var database: DatabaseReference = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com")
+    //private var database: DatabaseReference = Firebase.database.getReferenceFromUrl("https://jdconnect-45f8d-default-rtdb.firebaseio.com")
+    val db = Firebase.firestore
+    val auth = Firebase.auth
 
     /* I don't think Jobs need a UUID if they have a unique name only visible to a particular fleet */
     data class Job(
@@ -114,5 +119,18 @@ class DATABASE_MANAGMENT {
                 "longitude" to lon
             )
         }
+    }
+
+    fun getCurrentUser(): FirebaseUser? {
+       return auth.currentUser
+    }
+
+    fun getCurrentFleet(): Unit? {
+        val user = this.getCurrentUser() ?: return null
+
+        db.collection("fleets").document(user.uid)
+            // todo
+
+        return null
     }
 }
