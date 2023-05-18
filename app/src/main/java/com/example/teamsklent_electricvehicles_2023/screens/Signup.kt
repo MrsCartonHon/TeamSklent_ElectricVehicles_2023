@@ -14,13 +14,15 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.example.teamsklent_electricvehicles_2023.database.USER_MANAGMENT
 import com.example.teamsklent_electricvehicles_2023.models.User
@@ -33,7 +35,8 @@ import com.google.firebase.ktx.Firebase
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun Signup(navController: NavHostController) {
+fun Signup() {
+    val navController = LocalView.current.findNavController()
 
     var fname by remember { mutableStateOf(TextFieldValue("")) }
     var lname by remember { mutableStateOf(TextFieldValue("")) }
@@ -131,7 +134,7 @@ fun Signup(navController: NavHostController) {
         }
     }
 }
-fun register(fname: String, lname: String, email : String, password : String, navController: NavHostController) {
+fun register(fname: String, lname: String, email : String, password : String, navController:NavController) {
     val auth = Firebase.auth
 
     auth.createUserWithEmailAndPassword(email, password)

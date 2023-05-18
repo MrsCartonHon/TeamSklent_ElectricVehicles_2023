@@ -6,10 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.navigation.findNavController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.example.teamsklent_electricvehicles_2023.R
 import com.example.teamsklent_electricvehicles_2023.database.USER_MANAGMENT
@@ -18,8 +19,8 @@ import com.google.firebase.ktx.Firebase
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Settings(navController: NavHostController) {
-
+fun Settings() {
+    val navController = LocalView.current.findNavController()
     Column(
         modifier = Modifier.fillMaxSize()
     ) {

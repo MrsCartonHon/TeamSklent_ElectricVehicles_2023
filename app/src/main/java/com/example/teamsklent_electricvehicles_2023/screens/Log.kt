@@ -4,12 +4,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
+import androidx.compose.ui.platform.LocalView
+import androidx.navigation.findNavController
 import com.example.teamsklent_electricvehicles_2023.models.Job
 
 @Composable
-fun Logs(navController: NavHostController) {
-
+fun Logs() {
+    val navController = LocalView.current.findNavController()
     Box(
         modifier = Modifier.fillMaxSize()
     ) {

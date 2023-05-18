@@ -17,6 +17,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -25,7 +26,8 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import com.example.teamsklent_electricvehicles_2023.NavRoutes
 import com.example.teamsklent_electricvehicles_2023.ui.theme.JDGreen1
 import com.google.firebase.auth.ktx.auth
@@ -33,7 +35,8 @@ import com.google.firebase.ktx.Firebase
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun Login(navController: NavHostController) {
+fun Login() {
+    val navController = LocalView.current.findNavController()
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -115,7 +118,7 @@ fun Login(navController: NavHostController) {
         }
     }
 }
-fun login(email: String, password: String, navController: NavHostController) {
+fun login(email: String, password: String, navController: NavController) {
     val localAuth = Firebase.auth
     localAuth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->

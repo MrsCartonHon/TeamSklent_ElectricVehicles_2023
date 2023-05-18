@@ -20,7 +20,7 @@ import com.example.teamsklent_electricvehicles_2023.models.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FleetManagement(navController: NavHostController, fleet: Fleet) {
+fun FleetManagement(fleet: Fleet) {
     val openRemoveUser = remember { mutableStateOf(false) } // Is the dialog open
 
     var jobName = remember { mutableStateOf("") }

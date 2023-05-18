@@ -64,22 +64,22 @@ fun NavigationHost(navController: NavHostController) {
         startDestination = NavRoutes.Login.route,
     ) {
         composable(NavRoutes.Home.route) {
-            Home(navController)
+            Home()
         }
         composable(NavRoutes.Account.route) {
-            Account(navController)
+            Account()
         }
         composable(NavRoutes.Logs.route) {
-            Logs(navController)
+            Logs()
         }
         composable(NavRoutes.Login.route){
-            Login(navController)
+            Login()
         }
         composable(NavRoutes.Signup.route){
-            Signup(navController)
+            Signup()
         }
         composable(NavRoutes.Settings.route){
-            Settings(navController)
+            Settings()
         }
         composable(NavRoutes.NewJob.route){
             NewJob(navController)

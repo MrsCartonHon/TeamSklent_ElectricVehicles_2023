@@ -6,10 +6,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
+import androidx.compose.ui.platform.LocalView
+import androidx.navigation.findNavController
 
 @Composable
-fun Account(navController: NavHostController) {
+fun Account() {
+    val navController = LocalView.current.findNavController()
     Column {
 
         Row {
