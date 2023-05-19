@@ -17,10 +17,9 @@ import com.example.teamsklent_electricvehicles_2023.database.USER_MANAGMENT
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Settings() {
-    val navController = LocalView.current.findNavController()
+    //val navController = LocalView.current.findNavController()
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -80,7 +79,9 @@ fun Settings() {
                             fontSize = 24.sp
                         )
                         TextButton(
-                            onClick = {navController.navigate(NavRoutes.NewFleet.route)},
+                            onClick = {
+                                //navController.navigate(NavRoutes.NewFleet.route)
+                                      },
                             modifier = Modifier.align(Alignment.CenterEnd)
                         ) {
                             Text(
@@ -101,12 +102,15 @@ fun Settings() {
                     ) {
                         val crntUsr = USER_MANAGMENT().getUser(Firebase.auth.currentUser!!.uid)
                         if (!crntUsr?.ownedFleets!!.isEmpty()){
-                            crntUsr?.ownedFleets.forEach{ fleet ->
+                            crntUsr?.ownedFleets!!.forEach{ fleet ->
+                                /*
                                 ListItem(
                                     headlineText = {
                                         Text(text = fleet.name, fontSize = 20.sp)
                                     }
                                 )
+                                */
+
                             }
                         }else{
                             Text(

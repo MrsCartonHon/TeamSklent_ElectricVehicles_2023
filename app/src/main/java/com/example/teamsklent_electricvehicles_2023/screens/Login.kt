@@ -36,7 +36,7 @@ import com.google.firebase.ktx.Firebase
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun Login() {
-    val navController = LocalView.current.findNavController()
+   // val navController = LocalView.current.findNavController()
     var email by remember { mutableStateOf(TextFieldValue("")) }
     var password by remember { mutableStateOf(TextFieldValue("")) }
 
@@ -102,7 +102,7 @@ fun Login() {
             Button(
                 onClick = {
                     if(!email.equals("") && !password.equals("")){
-                        login(email.text, password.text, navController)
+                        //login(email.text, password.text)
 
                     }
                 },
@@ -112,7 +112,7 @@ fun Login() {
                 Text(text = "Login")
             }
             TextButton(
-                onClick = { navController.navigate(NavRoutes.Signup.route) },
+                onClick = { /*navController.navigate(NavRoutes.Signup.route)*/ },
                 content = { Text(text = "Don't have an account? Sign Up!")}
             )
         }

@@ -36,7 +36,7 @@ import com.google.firebase.ktx.Firebase
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun Signup() {
-    val navController = LocalView.current.findNavController()
+    //val navController = LocalView.current.findNavController()
 
     var fname by remember { mutableStateOf(TextFieldValue("")) }
     var lname by remember { mutableStateOf(TextFieldValue("")) }
@@ -120,7 +120,7 @@ fun Signup() {
             Button(
                 onClick = {
                     if (password.text == passwordConfirm.text) {
-                        register(fname.text,lname.text,email.text,password.text,navController)
+                       // register(fname.text,lname.text,email.text,password.text,navController)
                     } else {
                         // passwords don't match display error
                     }

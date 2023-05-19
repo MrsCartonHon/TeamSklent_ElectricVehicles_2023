@@ -10,7 +10,7 @@ import com.example.teamsklent_electricvehicles_2023.models.Job
 
 @Composable
 fun Logs() {
-    val navController = LocalView.current.findNavController()
+    //val navController = LocalView.current.findNavController()
     Box(
         modifier = Modifier.fillMaxSize()
     ) {

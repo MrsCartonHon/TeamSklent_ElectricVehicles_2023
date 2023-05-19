@@ -130,6 +130,7 @@ fun FleetManagement(fleet: Fleet) {
                         Card(
                             modifier = Modifier.absolutePadding(10.dp, 10.dp, 10.dp, 10.dp)
                         ) {
+                            /*
                             ListItem(
                                 headlineText = {
                                     Text(
@@ -152,6 +153,8 @@ fun FleetManagement(fleet: Fleet) {
                                     )
                                 }
                             )
+                            */
+
                         }
                     }
                 }

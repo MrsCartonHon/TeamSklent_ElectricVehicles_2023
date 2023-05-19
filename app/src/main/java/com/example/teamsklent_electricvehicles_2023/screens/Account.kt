@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 
 @Composable
 fun Account() {
-    val navController = LocalView.current.findNavController()
+    //val navController = LocalView.current.findNavController()
     Column {
 
         Row {
